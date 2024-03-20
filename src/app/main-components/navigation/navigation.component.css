@@ -1,0 +1,35 @@
+/* nav menu */
+
+nav {
+    display: flex;
+    gap: 1em;
+    color: white;
+    font-size: 1.6vw;
+}
+
+.contnav {
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0) 6%, rgba(40, 36, 32, 0.45710784313725494) 33%, rgba(20, 14, 7, 0.4318977591036415) 49%, rgba(25, 23, 21, 0.4459033613445378) 64%, rgba(250, 250, 250, 0) 93%);
+    position: relative;
+    z-index: 5;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    padding: .2em;
+    ;
+}
+
+a {
+    display: block;
+    padding: 0 .3em;
+    color: white;
+    text-decoration: none;
+    border: .14vw solid rgba(0, 0, 0, 0);
+}
+
+a:hover {
+    /* color: rgb(147, 248, 6); */
+
+    border-left: .14vw solid rgb(147, 248, 6);
+    border-right: .14vw solid rgb(147, 248, 6);
+
+}

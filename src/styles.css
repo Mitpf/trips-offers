@@ -1,1 +1,37 @@
 /* You can add global styles to this file, and also import other style files */
+/* Reset */
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    font-family: 'Exo-Regular', serif;
+    box-sizing: border-box;
+}
+
+*,
+*::after,
+*::before {
+    box-sizing: inherit;
+}
+
+
+@font-face {
+    font-family: 'Exo-Regular';
+    src: url('assets/fonts/exo/Exo-Regular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+/* body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+    height: 100vh;
+} */
+
