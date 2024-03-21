@@ -25,3 +25,26 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+
+> for layout container is used ```<app-root>``` element
+```html
+<body>
+  <app-root></app-root>
+</body>
+</html>
+```
+> stylized in app.component.CSS with :host
+```CSS
+:host {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  overflow: hidden;
+  height: 100vh;
+
+}
+```
