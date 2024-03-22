@@ -7,7 +7,7 @@ const routes: Routes = [
   {
     path: 'user',
     children: [
-      /*  { path: '', pathMatch: 'full', component: MainComponent }, */
+      { path: '', pathMatch: 'full', redirectTo: 'profile' },
       {
         path: ':userId',
         children: [

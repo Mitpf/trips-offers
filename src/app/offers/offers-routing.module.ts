@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { OfferDetailsComponent } from './offer-details/offer-details.component';
 import { CatalogOffersComponent } from './catalog-offers/catalog-offers.component';
 import { CreateOfferComponent } from './create-offer/create-offer.component';
+import { Page404Component } from '../error-messages/page-404/page-404.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,7 @@ const routes: Routes = [
   },
 
   { path: 'offers-catalog', component: CatalogOffersComponent },
+  { path: '**', redirectTo: '/404' },
 ];
 
 @NgModule({

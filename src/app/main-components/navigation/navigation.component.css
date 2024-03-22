@@ -10,12 +10,11 @@ nav {
 .contnav {
 /*     background: linear-gradient(90deg, rgba(255, 255, 255, 0) 6%, rgba(40, 36, 32, 0.45710784313725494) 33%, rgba(20, 14, 7, 0.4318977591036415) 49%, rgba(25, 23, 21, 0.4459033613445378) 64%, rgba(250, 250, 250, 0) 93%);
  */    position: relative;
-    z-index: 5;
+    z-index: 15;
     width: 100vw;
     display: flex;
     justify-content: center;
     padding: .2em;
-    ;
 }
 
 a {

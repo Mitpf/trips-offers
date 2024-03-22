@@ -11,10 +11,15 @@
 
 }
 
-img {
+.back-img {
   z-index: -1;
   position: absolute;
   width: 100vw;
   height: 135%;
   object-fit: cover;
+}
+
+.main-cont {
+  width: 100vw;
+  height: 100vh;
 }

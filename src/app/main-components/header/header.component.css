@@ -13,6 +13,7 @@
     justify-content: start;
     align-items:center;
     color: azure;
+    flex: 0 0 auto;
 }
 
 h1 {

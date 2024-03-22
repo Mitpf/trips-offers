@@ -9,6 +9,11 @@ import { AuthUserModule } from './auth-user/auth-user.module';
 import { HomeComponent } from './home/home.component';
 import { UserModule } from './user/user.module';
 import { OffersModule } from './offers/offers.module';
+import { ErrorMessagesModule } from './error-messages/error-messages.module';
+import { ProfileComponent } from './user/profile/profile.component';
+import { FavoritesComponent } from './user/favorites/favorites.component';
+import { CreateOfferComponent } from './offers/create-offer/create-offer.component';
+import { OfferRoutingModule } from './offers/offers-routing.module';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent],
@@ -19,6 +24,7 @@ import { OffersModule } from './offers/offers.module';
     AuthUserModule,
     UserModule,
     OffersModule,
+    ErrorMessagesModule,
     AppRoutingModule,
   ],
   providers: [],
