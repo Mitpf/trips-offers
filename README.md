@@ -48,3 +48,48 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 }
 ```
+
+# API  BACK4APP setup
+
+>
+```javascript
+const host = 'https://parseapi.back4app.com';
+const appId = ''; // Application ID
+const apiKey = ''; // JavaScript key
+const restApiKey = '';
+```
+ 
+
+```
+https://dashboard.back4app.com/apidocs/PbsUtdKVxe7rbYDL5553Ev3QDGDd9DPbP6dnl8tU#signing-up
+
+https://dashboard.back4app.com/apidocs/PbsUtdKVxe7rbYDL5553Ev3QDGDd9DPbP6dnl8tU#initializing-parse-sdk
+
+```
+
+
+**Application ID**
+PbsUtdKVxe7rbYDL5553Ev3QDGDd9DPbP6dnl8tU
+
+**Client key**
+lVFcoW6nz8tcEsdEFVeCsckYayN3ndgTS2DIVaWL
+
+**JavaScript key**
+OqvCHBHIaTwKUIAFdQjjPTyrPScywEX6uIM5rqE6
+
+**.NET key**
+NNfqOK9K7NaOWMz8DHjCGzWqPSUnN55wNYRCRztC
+
+**REST API key**
+xDflhIlMZQ9VVZSyApQE9cDh4XMB2PJ84CH57Qzy
+
+**Webhook key**
+KRP6QpMUUEWlJ5BOpiK1LKE5RamJaSk5JzQsz9qf
+
+**File key**
+d9c5fa40-8766-40f1-9548-03efed1069a0
+
+**Master key**
+fYQkmUkCMaRc0Oh7tlNfRQoSxOtt6gtoN65afXE4
+
+![alt text](image.png)

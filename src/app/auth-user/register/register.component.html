@@ -2,18 +2,23 @@
 
     <form class="register-form" action="">
         <h4>Create new account:</h4>
+
+        <label for="userName">E-mail:
+            <input type="text" placeholder="username" class="inpfield" #username>
+        </label>
         <label for="e-mail">E-mail:
-            <input type="email" placeholder="email@xxx.vv" class="inpfield">
+            <input type="email" placeholder="email@xxx.vv" class="inpfield" #email>
         </label>
 
         <label for="password">Password:
-            <input type="password" placeholder="password" class="inpfield">
+            <input type="password" placeholder="password" class="inpfield" #password>
         </label>
         <label for="repassword">Repassword:
-            <input type="password" placeholder="repeat password" class="inpfield">
+            <input type="password" placeholder="repeat password" class="inpfield" #repassword>
         </label>
 
-        <a class="a-button">Sign in</a>
+        <a class="a-button" (click)="register($event, email.value,username.value, password.value, repassword.value)">
+            Register now</a>
 
         <p>Already have an account? <a class="a-txt" routerLink="/login">Login</a> </p>
     </form>
