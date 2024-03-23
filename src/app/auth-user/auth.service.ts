@@ -7,11 +7,7 @@ import { UtilService } from '../app-services-utils/util.service';
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(
-    private http: HttpClient,
-    private apiService: ApiService,
-    private utilService: UtilService
-  ) {}
+  constructor(private http: HttpClient, private apiService: ApiService) {}
 
   register(
     e: Event,
@@ -21,7 +17,10 @@ export class AuthService {
     repassword: string
   ) {
     e.preventDefault();
-    console.log(email, username, password, repassword);
+
+    if (password != repassword) {
+      alert('passwords not matched!');
+    }
 
     const regData = { email, username, password };
 
@@ -29,29 +28,32 @@ export class AuthService {
       .post('/users', regData)
       .subscribe((userData) => UtilService.setUserData(userData));
   }
+
+  login(username: string, password: string) {
+    this.apiService
+      .post('/login', { username, password })
+      .subscribe((userData) => UtilService.setUserData(userData));
+  }
 }
 
 /* 
-const userData = {
-  objectId: 'h3A2VDzOP5',
-  createdAt: '2024-03-22T22:46:18.114Z',
-  sessionToken: 'r:cc66a827318fcbfcf4e519ddcb7940fe',
-};
-*/
-
-/* 
-const headers = new HttpHeaders({
-      'X-Parse-Application-Id': appId,
-      'X-Parse-REST-API-Key': restApiKey,
-      'X-Parse-JavaScript-Key': apiKey,
-      'Content-Type': 'application/json',
-    });
-
-    return this.http.post(
-      host + '/users',
-      { email, username, password },
-      { headers }
-    );
-
+createdAt
+: 
+"2024-03-23T12:49:24.933Z"
+email
+: 
+"mitko@abv.bg"
+objectId
+: 
+"BADONE1MfD"
+sessionToken
+: 
+"r:2c33b79aa596e1602413d9b39231db8a"
+updatedAt
+: 
+"2024-03-23T12:49:24.933Z"
+username
+: 
+"Mitko"
 
 */

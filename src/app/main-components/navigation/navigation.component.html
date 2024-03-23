@@ -2,11 +2,17 @@
     <nav>
         <a routerLink="/home" class="hover-button">Home</a>
         <a routerLink="/offers-catalog">Trip Offers</a>
-        <a routerLink="/offer/create">Add Offer</a>
-        <a routerLink="/user/123/profile">Profile</a>
-        <a routerLink="/user/123/favorites">My Favorites</a>
-        <a routerLink="/login">Login</a>
-        <a routerLink="/register">Register</a>
-        <a routerLink="/logout">Logout</a>
+        
+        <ng-container *ngIf="isLoggedUser">
+            <a routerLink="/offer/create">Add Offer</a>
+            <a routerLink="/user/123/profile">Profile</a>
+            <a routerLink="/user/123/favorites">My Favorites</a>
+            <a routerLink="/logout">Logout</a>
+        </ng-container>
+
+        <ng-container *ngIf="!isLoggedUser">
+            <a routerLink="/login">Login</a>
+            <a routerLink="/register">Register</a>
+        </ng-container>
     </nav>
 </div>

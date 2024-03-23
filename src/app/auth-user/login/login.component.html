@@ -3,14 +3,14 @@
     <form class="login-form" action="">
         <h4>Login:</h4>
         <label for="e-mail">E-mail:
-            <input type="email" placeholder="email@xxx.vv" class="inpfield">
+            <input type="email" placeholder="e-mail" class="inpfield" #email>
         </label>
 
         <label for="password">Password:
-            <input type="password" placeholder="password" class="inpfield">
+            <input type="password" placeholder="password" class="inpfield" #password>
         </label>
 
-        <a class="a-button">Sign in</a>
+        <a class="a-button" (click)="login(email.value, password.value)">Sign in</a>
 
         <p>Don't have an account? <a class="a-txt" routerLink="/register">Register</a> </p>
     </form>

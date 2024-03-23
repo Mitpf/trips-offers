@@ -26,7 +26,12 @@ export class ApiService {
     body:{},
   };
 
-  get(url: string): Observable<Object> {
+  get(url: string, data:Object): Observable<Object> {
+    if (data !== undefined) {
+      this.options.headers.set('Content-Type', 'application/json');
+      this.options.body = JSON.stringify(data);
+    }
+
     return this.http.get<Object>(`${host}${url}`, this.options);
   }
 
