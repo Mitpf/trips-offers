@@ -15,6 +15,11 @@ export class UtilService {
     if (userDataString !== null) {
       return JSON.parse(userDataString);
     }
-    return null; 
+    return null;
   }
+
+  static clearUserData() {
+    localStorage.removeItem('userData');
+  }
+
 }

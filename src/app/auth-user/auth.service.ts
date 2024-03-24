@@ -1,13 +1,18 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ApiService } from '../app-services-utils/api.service';
 import { UtilService } from '../app-services-utils/util.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private http: HttpClient, private apiService: ApiService) {}
+  constructor(
+    private http: HttpClient,
+    private apiService: ApiService,
+    private router: Router
+  ) {}
 
   register(
     e: Event,
@@ -18,42 +23,57 @@ export class AuthService {
   ) {
     e.preventDefault();
 
+    // todo some validation email, passwords
     if (password != repassword) {
       alert('passwords not matched!');
     }
 
     const regData = { email, username, password };
 
-    this.apiService
-      .post('/users', regData)
-      .subscribe((userData) => UtilService.setUserData(userData));
+    this.apiService.post('/users', regData).subscribe((userData) => {
+      UtilService.setUserData(userData);
+      this.router.navigateByUrl('/home');
+    },
+    (error)=>{
+      console.error('Register failed:', error);
+        alert('Register failed:'+'\n'+error.error.error + '\n' + error.message);
+    }
+    );
   }
 
   login(username: string, password: string) {
-    this.apiService
-      .post('/login', { username, password })
-      .subscribe((userData) => UtilService.setUserData(userData));
+    this.apiService.post('/login', { username, password }).subscribe(
+      (userData) => {
+        UtilService.setUserData(userData);
+        this.router.navigateByUrl('/home');
+      },
+      (error) => {
+        console.error('Login failed:', error);
+        alert('Login failed:'+'\n'+error.error.error + '\n' + error.message);
+      }
+    );
+  }
+
+  static isLoggedUser() {
+    return !!UtilService.getUserData();
+  }
+
+  logout() {
+    this.apiService.post('/logout').subscribe(
+      (data) => {
+        console.log('Logout successful:', data);
+        // Additional logout logic (redirect, clear session, etc.)
+        UtilService.clearUserData();
+        this.router.navigateByUrl('/home');
+      },
+      (error) => {
+        console.error('Logout failed:', error);
+        alert('Logout failed:'+'\n'+error.error.error + '\n' + error.message);
+      }
+    );
+  }
+
+  getUserServerInfo() {
+    this.apiService.get('/users/me').subscribe((data) => console.log(data));
   }
 }
-
-/* 
-createdAt
-: 
-"2024-03-23T12:49:24.933Z"
-email
-: 
-"mitko@abv.bg"
-objectId
-: 
-"BADONE1MfD"
-sessionToken
-: 
-"r:2c33b79aa596e1602413d9b39231db8a"
-updatedAt
-: 
-"2024-03-23T12:49:24.933Z"
-username
-: 
-"Mitko"
-
-*/

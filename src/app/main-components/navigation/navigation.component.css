@@ -1,57 +1,102 @@
 /* nav menu */
 
 nav {
-    display: flex;
-    gap: 1em;
-    color: white;
-    font-size: 1.6vw;
+  display: flex;
+  gap: 1em;
+  color: white;
+  font-size: 1.6vw;
 }
 
+
+
 .contnav {
-/*     background: linear-gradient(90deg, rgba(255, 255, 255, 0) 6%, rgba(40, 36, 32, 0.45710784313725494) 33%, rgba(20, 14, 7, 0.4318977591036415) 49%, rgba(25, 23, 21, 0.4459033613445378) 64%, rgba(250, 250, 250, 0) 93%);
- */    position: relative;
-    z-index: 15;
-    width: 100vw;
-    display: flex;
-    justify-content: center;
-    padding: .2em;
+  /*     background: linear-gradient(90deg, rgba(255, 255, 255, 0) 6%, rgba(40, 36, 32, 0.45710784313725494) 33%, rgba(20, 14, 7, 0.4318977591036415) 49%, rgba(25, 23, 21, 0.4459033613445378) 64%, rgba(250, 250, 250, 0) 93%);
+ */
+  position: relative;
+  z-index: 15;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  padding: .2em;
 }
 
 a {
-    display: block;
-    padding: 0 .3em;
-    color: white;
-    text-decoration: none;
+  display: block;
+  padding: 0 .3em;
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 a::before {
-    content: '[ '; /* Add left bracket before button text */
-    color:rgb(0, 0, 0,0);
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  }
-  
-  a::after {
-    content: ' ]'; /* Add right bracket after button text */
-    color:rgb(0, 0, 0,0);
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  }
+  content: '[ ';
+  /* Add left bracket before button text */
+  color: rgb(0, 0, 0, 0);
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+a::after {
+  content: ' ]';
+  /* Add right bracket after button text */
+  color: rgb(0, 0, 0, 0);
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
 
 
 
 
- 
-  a:hover::before {
-    content: '[ '; /* Add left bracket before button text */
-    color:rgb(51, 253, 1);
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    position: relative;
-    top:-2px;
-  }
-  
-  a:hover::after {
-    content: ' ]'; /* Add right bracket after button text */
-    color:rgb(51, 253, 1);
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    position: relative;
-    top:-2px;
-  }
+
+
+
+/* ul li menu */
+nav>ul{
+  display: flex;
+}
+
+nav li,
+nav a {
+  display: block;
+}
+
+/* hiding second level ul */
+nav ul ul {
+  display: none;
+}
+
+/* what is when block display on li,a */
+nav li,
+nav a {
+    display: block;
+
+}
+
+
+
+/* brackets */
+nav li:hover>a::after {
+  content: ' ]';
+  /* Add right bracket after button text */
+  color: rgb(51, 253, 1);
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  position: relative;
+  top: -2px;
+}
+
+nav li:hover>a::before {
+  content: '[ ';
+  /* Add left bracket before button text */
+  color: rgb(51, 253, 1);
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  position: relative;
+  top: -2px;
+}
+
+/* select direct ul child of current hovered li and show it */
+nav li:hover>ul {
+  display: block;
+}
+
+nav ul ul{
+  position: absolute;
+}
+

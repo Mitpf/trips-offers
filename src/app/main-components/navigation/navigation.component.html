@@ -1,18 +1,27 @@
 <div class="contnav">
     <nav>
-        <a routerLink="/home" class="hover-button">Home</a>
-        <a routerLink="/offers-catalog">Trip Offers</a>
-        
-        <ng-container *ngIf="isLoggedUser">
-            <a routerLink="/offer/create">Add Offer</a>
-            <a routerLink="/user/123/profile">Profile</a>
-            <a routerLink="/user/123/favorites">My Favorites</a>
-            <a routerLink="/logout">Logout</a>
-        </ng-container>
+        <ul>
 
-        <ng-container *ngIf="!isLoggedUser">
-            <a routerLink="/login">Login</a>
-            <a routerLink="/register">Register</a>
-        </ng-container>
+            <li><a routerLink="/home" class="hover-button">Home</a></li>
+            <li><a routerLink="/offers-catalog">Trip Offers</a></li>
+
+            <ng-container *ngIf="isLoggedUser">
+                <li><a routerLink="/offer/create">Add Offer</a></li>
+                <li><a routerLink="/user/123/favorites">My Favorites</a></li>
+
+                <li><a routerLink="/user/123/profile">{{userInfo.username}} Profile</a>
+                    <ul>
+                        <li><a> Account Info</a></li>
+                        <li><a (click)="logout()">{{userInfo.username}} Logout</a></li>
+                    </ul>
+                </li>
+            </ng-container>
+
+            <ng-container *ngIf="!isLoggedUser">
+                <li><a routerLink="/login">Login</a></li>
+                <li><a routerLink="/register">Register</a></li>
+            </ng-container>
+        </ul>
+
     </nav>
 </div>
