@@ -1,0 +1,17 @@
+.offers-cont {
+    /* border: 1px solid red; */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:center;
+    
+   padding: 1em 2em;;
+    gap:1em;
+}
+
+.offer-card {
+    
+    width: 200px;
+    height: 270px;
+    border-radius: .5em;
+    background: hsl(0, 0%, 100%, .4);
+}

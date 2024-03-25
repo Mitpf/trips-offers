@@ -1,25 +1,46 @@
+/* ************************ */
+/* ! LAYOUT */
 /* :host is <app> */
+/* ********************** */
+
 :host {
-  position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
+  min-height: 100vh;
+ 
+  /* overflow-y: hidden; */
+
+  background-image: url('../assets/f0ec07154733865.63478f1bc5cac.jpg');
+  background-size: cover;
+  background-position: top;
+  background-attachment: fixed;
+}
+
+app-header {
+  position: sticky;
+  top: 0;
+  background-image: url('../assets/f0ec07154733865.63478f1bc5cac.jpg');
+  background-size: cover;
+  /* Cover the entire viewport */
+  background-position: top;
+  /* Center the image */
+  background-attachment: fixed;
+  /* Fix the background position */
+  color: white;
   text-align: center;
-  overflow: hidden;
-  height: 100vh;
-
 }
 
-.back-img {
-  z-index: -1;
-  position: absolute;
-  width: 100vw;
-  height: 135%;
-  object-fit: cover;
+main {
+  flex: 1 0 auto;
+  overflow: auto;
 }
 
-.main-cont {
-  width: 100vw;
-  height: 100vh;
+app-footer {
+  position: sticky;
+  bottom: 0;
+  text-align: center;
+  color: antiquewhite;
+  background: rgba(118, 123, 133, 0.6);
+  padding: .5em;
+
 }

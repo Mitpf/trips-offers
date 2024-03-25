@@ -25,13 +25,10 @@ html {
     font-style: normal;
 }
 
-
-/* body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    text-align: center;
-    height: 100vh;
-} */
+@font-face {
+    font-family: 'Arima-medium';
+    src: url('assets/fonts/ArimaKoshi-Medium.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+  }
 

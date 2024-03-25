@@ -14,7 +14,7 @@ nav {
  */
   position: relative;
   z-index: 15;
-  width: 100vw;
+  /* width: 100vw; */
   display: flex;
   justify-content: center;
   padding: .2em;
@@ -43,14 +43,19 @@ a::after {
 }
 
 
-
-
+span.log-user{
+  color: rgb(44, 251, 3);
+}
+.profile a {
+  display: inline;
+}
 
 
 
 /* ul li menu */
-nav>ul{
+nav>ul {
   display: flex;
+
 }
 
 nav li,
@@ -66,7 +71,7 @@ nav ul ul {
 /* what is when block display on li,a */
 nav li,
 nav a {
-    display: block;
+  display: block;
 
 }
 
@@ -93,10 +98,26 @@ nav li:hover>a::before {
 
 /* select direct ul child of current hovered li and show it */
 nav li:hover>ul {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  align-items:first baseline;
+ 
 }
 
-nav ul ul{
+nav li:hover>ul li{
+margin:.4em 0 0;
+}
+
+nav ul ul {
   position: absolute;
 }
 
+.profile ul {
+  font-size: 1.4vw;
+}
+
+.profile ul li {
+  padding: .1em;
+  background: rgb(128, 128, 128,.5);
+  border-radius: .2em;
+}

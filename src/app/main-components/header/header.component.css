@@ -5,22 +5,14 @@
     font-style: normal;
 }
 
-.heading {
-   
-    /* width: 100vw; */
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    align-items:center;
-    color: azure;
-    flex: 0 0 auto;
-}
-
 h1 {
     z-index: 1;
     font-family: "Arima-medium";
     font-size: 4.7vw;
     font-style: italic;
-    text-shadow: 6px 4px 7px rgba(0,0,0,0.35);
+    text-shadow: 6px 4px 7px rgba(0, 0, 0, 0.35);
 }
 
+span.and {
+    font-family: Cambria, 'Times New Roman', serif;
+}
