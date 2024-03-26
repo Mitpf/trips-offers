@@ -1,19 +1,19 @@
 /* ************************ */
 /* ! LAYOUT */
-/* :host is <app> */
 /* ********************** */
 
+/* ** :host is <app/> */
 :host {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
  
-  /* overflow-y: hidden; */
-
   background-image: url('../assets/f0ec07154733865.63478f1bc5cac.jpg');
   background-size: cover;
   background-position: top;
   background-attachment: fixed;
+  height: 100vh;/* todo */
+    overflow: hidden;/* todo */
 }
 
 app-header {
@@ -21,18 +21,18 @@ app-header {
   top: 0;
   background-image: url('../assets/f0ec07154733865.63478f1bc5cac.jpg');
   background-size: cover;
-  /* Cover the entire viewport */
   background-position: top;
-  /* Center the image */
   background-attachment: fixed;
-  /* Fix the background position */
   color: white;
   text-align: center;
+
+  padding-bottom: 4vw;
 }
 
 main {
   flex: 1 0 auto;
   overflow: auto;
+  
 }
 
 app-footer {
@@ -43,4 +43,30 @@ app-footer {
   background: rgba(118, 123, 133, 0.6);
   padding: .5em;
 
+}
+
+
+/* scrollers styles*/
+
+/* vertical scroller */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #263856; 
+  border-radius: 5px; 
+}
+
+/* horizontall scroller */
+::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
+
+::-webkit-scrollbar-corner {
+  background-color: transparent; 
+}
+
+::-webkit-scrollbar-track {
+  background-color: rgb(107, 139, 179); /* Промяна на цвета на бялото поле на скролера на черно */
 }

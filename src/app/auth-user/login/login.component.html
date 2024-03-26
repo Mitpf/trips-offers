@@ -3,11 +3,11 @@
     <form class="login-form" action="">
         <h4>Login:</h4>
         <label for="e-mail">E-mail:
-            <input type="email" placeholder="e-mail" class="inpfield" #email>
+            <input (keyup.enter)="login(email.value, password.value)" type="email" placeholder="e-mail" class="inpfield" #email>
         </label>
 
         <label for="password">Password:
-            <input type="password" placeholder="password" class="inpfield" #password>
+            <input (keyup.enter)="login(email.value, password.value)" type="password" placeholder="password" class="inpfield" #password>
         </label>
 
         <a class="a-button" (click)="login(email.value, password.value)">Sign in</a>

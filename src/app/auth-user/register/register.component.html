@@ -14,7 +14,10 @@
             <input type="password" placeholder="password" class="inpfield" #password>
         </label>
         <label for="repassword">Repassword:
-            <input type="password" placeholder="repeat password" class="inpfield" #repassword>
+            <input 
+            (keyup.enter)="register($event, email.value,username.value, password.value, repassword.value)" 
+            type="password" placeholder="repeat password" 
+            class="inpfield" #repassword>
         </label>
 
         <a class="a-button" (click)="register($event, email.value,username.value, password.value, repassword.value)">
