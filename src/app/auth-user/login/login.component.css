@@ -86,7 +86,8 @@
 
     border-radius: .2em;
     padding: .4em;
-    color: rgb(17, 249, 0);
+    color: rgb(249, 0, 0);
+    height: 2em;
 }
 
 .error-border {

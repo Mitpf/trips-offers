@@ -1,4 +1,4 @@
-import { Component, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { NgForm, NgModel } from '@angular/forms';
 
@@ -7,33 +7,17 @@ import { NgForm, NgModel } from '@angular/forms';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
-export class LoginComponent implements AfterViewInit{
- 
+export class LoginComponent {
   @ViewChild('email') emailModel!: NgModel;
   @ViewChild('password') passwordModel!: NgModel;
 
   isEmailFieldFocused: boolean = false;
   isPasswordFieldFocused: boolean = false;
+  isFormReset: boolean = false; // Flag to track if the form has been reset
 
   constructor(private authService: AuthService) {}
 
-  ngAfterViewInit() {
-    if (!this.emailModel || !this.passwordModel) {
-      console.error('Email model or password model is not defined.');
-    }
-
-    if (!this.emailModel || !this.passwordModel) {
-      console.error('Email model or password model is not defined.');
-    } else {
-      console.log('Email model and password model are defined.');
-    }
-  }
-
   formSubmitHandler(form: NgForm) {
-    console.log(form.value);
-
-    console.log('invalid', form.invalid);
-
     if (form?.invalid) {
       console.log('Form is invalid!');
       return;
@@ -41,7 +25,8 @@ export class LoginComponent implements AfterViewInit{
 
     const { email, password } = form?.value;
     //form.reset();
-    //form.setValue({ email: '', password: '' });
+    this.isFormReset = true;
+    form.setValue({ email: '', password: '' });
 
     this.authService.login(email, password);
   }
@@ -63,26 +48,37 @@ export class LoginComponent implements AfterViewInit{
   }
 
   get emailErrorMessage(): string {
+    if (this.isFormReset) {
+      return '';
+    }
+
     if (this.emailModel?.touched && !this.isEmailFieldFocused) {
       if (this.emailModel.errors?.['required']) {
         return 'Email is required!';
       }
+
       if (this.emailModel.errors?.['email']) {
-        return 'Email is not valid!';
+        return `Email is not valid!`;
       }
     }
+
     return '';
   }
 
   get passwordErrorMessage(): string {
+    if (this.isFormReset) {
+      return '';
+    }
     if (this.passwordModel?.touched && !this.isPasswordFieldFocused) {
       if (this.passwordModel.errors?.['required']) {
         return 'Password is required!';
       }
+
       if (this.passwordModel.errors?.['appMaxCount']) {
         return `Password is less than ${this.passwordModel.errors?.['appMaxCount']} characters!`;
       }
     }
+
     return '';
   }
 }
