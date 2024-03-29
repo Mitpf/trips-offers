@@ -1,6 +1,72 @@
 <main class="login-cont">
+    <!-- #logForm="ngForm" -->
 
-    <form class="login-form" action="">
+    <div class="form-container">
+        <h4>Login:</h4>
+        <form class="login-form" #logForm="ngForm" (ngSubmit)="formSubmitHandler(logForm)">
+
+
+            <div class="form-group">
+                <label for="">E-mail: </label>
+                <input 
+                class="inpfield" 
+                type="email" 
+                placeholder="e-mail" 
+                name="email"  
+                 email 
+                 required 
+                 ngModel
+                 #email="ngModel" 
+                 (focus)="onFocus('email')"
+                 (blur)="onBlur('email')"
+                 [ngClass]="{ 'error-border': email.invalid && email.touched && emailErrorMessage }"
+                 (keyup.enter)="logForm.ngSubmit.emit()" 
+                  />
+               
+            </div>
+
+            <div class="form-group">
+                <label for="">Password: </label>
+                <input 
+                type="password" 
+                placeholder="password" 
+                class="inpfield" 
+                name="password" 
+                ngModel
+                required 
+                #password="ngModel" 
+                [appMaxCount]="6"
+                (focus)="onFocus('password')" 
+                (blur)="onBlur('password')"
+                [ngClass]="{ 'error-border': passwordErrorMessage }" 
+                (keyup.enter)="logForm.ngSubmit.emit()" 
+                />
+            </div>
+
+            <p>Password minimum 6 characters long!</p>
+            <button class="a-button">Sign in</button>
+
+            <p>Don't have an account? <a class="a-txt" routerLink="/register">Register</a> </p>
+        </form>
+    </div>
+
+
+    <!-- Validations Messages HERE -->
+    <div class="error-container">
+        <div>{{ emailErrorMessage }}</div>
+        <div>{{ passwordErrorMessage }}</div>
+    </div>
+
+</main>
+
+
+<!-- <a class="a-button" (click)="logForm.ngSubmit.emit()">Sign in</a> -->
+<!-- (click)="login(email.value, password.value)" -->
+<!-- 
+
+<main class="login-cont">
+
+    <form class="login-form" >
         <h4>Login:</h4>
         <label for="e-mail">E-mail:
             <input (keyup.enter)="login(email.value, password.value)" type="email" placeholder="e-mail" class="inpfield" #email>
@@ -15,3 +81,5 @@
         <p>Don't have an account? <a class="a-txt" routerLink="/register">Register</a> </p>
     </form>
 </main>
+
+ -->

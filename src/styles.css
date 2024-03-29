@@ -17,6 +17,15 @@ html {
     box-sizing: inherit;
 }
 
+body,
+table,
+textarea,
+input,
+option,
+label,
+button {
+    font: inherit;
+}
 
 @font-face {
     font-family: 'Exo-Regular';

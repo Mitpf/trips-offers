@@ -6,21 +6,29 @@
     width: 100vw;
     height: 100%;
     align-items: center;
+    gap: 1em;
 }
 
-.login-form {
+.form-container {
     display: flex;
     flex-direction: column;
     gap: .7em;
-    align-items: end;
+    align-items: center;
     border-radius: .4em;
     padding: 1.4em;
     color: white;
     background: rgba(255, 255, 255, 0.15);
 }
 
+.login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    gap: .7em;
+}
 
-form h4 {
+
+.form-container h4 {
     font-size: 1.3em;
     font-weight: 100;
     align-self: center;
@@ -31,10 +39,14 @@ form h4 {
     color: black;
     padding: .4em;
     border-radius: .3em;
-    border-inline: none;
-    outline: none;
+    /* border-inline: none; */
+    /* outline: none; */
     /* Remove the default focus outline */
     border: none;
+}
+
+.inpfield:focus{
+    outline: .1px solid blue;
 }
 
 .a-button {
@@ -44,13 +56,16 @@ form h4 {
     border-radius: .2em;
     align-self: center;
     margin-top: 1em;
-    background: rgba(89, 89, 92, 0.15);
+    background: rgba(238, 238, 241, 0.65);
+    /* for normal button */
+    border: none;
 }
 
 .a-button:hover {
-    color: gray;
+    color: rgb(57, 55, 55);
     cursor: pointer;
 }
+
 
 .login-form p {
     align-self: center;
@@ -63,6 +78,17 @@ form h4 {
 }
 
 .a-txt:hover {
-    color: rgb(72, 70, 70);
-    
+    color: rgb(36, 33, 33);
+
+}
+
+.error-container {
+
+    border-radius: .2em;
+    padding: .4em;
+    color: rgb(17, 249, 0);
+}
+
+.error-border {
+    outline: .1px solid red;
 }
