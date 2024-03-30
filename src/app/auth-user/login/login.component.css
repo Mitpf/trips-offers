@@ -12,8 +12,8 @@
 .form-container {
     display: flex;
     flex-direction: column;
-    gap: .7em;
     align-items: center;
+    gap: .7em;
     border-radius: .4em;
     padding: 1.4em;
     color: white;
@@ -33,9 +33,11 @@
     font-weight: 100;
     align-self: center;
     margin-bottom: 1em;
+    align-items: flex-start;
 }
 
 .inpfield {
+    align-self: flex-end;
     color: black;
     padding: .4em;
     border-radius: .3em;
@@ -45,7 +47,8 @@
     border: none;
 }
 
-.inpfield:focus{
+
+.inpfield:focus {
     outline: .1px solid blue;
 }
 
@@ -67,8 +70,11 @@
 }
 
 
-.login-form p {
+.form-container>p {
+    margin-top: 1em;
     align-self: center;
+    font-size: 1.4em;
+    ;
 }
 
 .a-txt {
@@ -90,6 +96,11 @@
     height: 2em;
 }
 
-.error-border {
+.inp-error {
     outline: .1px solid red;
 }
+
+.login-form p:nth-of-type(2) {
+    font-size: 1.25em;
+}
+

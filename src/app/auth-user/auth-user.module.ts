@@ -4,11 +4,11 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { MaxCountDirective } from './max-count.directive';
+import { EmailDirective } from './validators/email.directive';
 
 @NgModule({
-  declarations: [LoginComponent, RegisterComponent, MaxCountDirective],
+  declarations: [LoginComponent, RegisterComponent, EmailDirective],
   imports: [CommonModule, RouterModule, FormsModule],
-  exports: [LoginComponent, RegisterComponent],
+  exports: [LoginComponent, RegisterComponent, EmailDirective],
 })
 export class AuthUserModule {}

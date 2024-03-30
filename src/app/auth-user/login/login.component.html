@@ -1,68 +1,53 @@
 <main class="login-cont">
-    <!-- #logForm="ngForm" -->
 
-    <!-- Validations Messages Goes HERE -->
     <div class="error-container">
-        <div>{{ emailErrorMessage }}</div>
-        <div>{{ passwordErrorMessage }}</div>
-    </div>
-    <!-- vld msgs -->
+        <ng-container *ngIf="inputEmail.dirty">
+            <p *ngIf="inputEmail.errors?.['required']"> Email required!</p>
+            <p *ngIf="inputEmail.errors?.['emailValidator']">Email-validation failed!</p>
 
+        </ng-container>
+
+        <ng-container *ngIf="inputPassword.dirty">
+            <p *ngIf="inputPassword.errors?.['required']"> Password required!</p>
+            <p *ngIf="inputPassword.errors?.['minlength']"> Password must be at least 6 symbols long!</p>
+        </ng-container>
+    </div>
 
     <div class="form-container">
+
         <h4>Login:</h4>
-        <form class="login-form" #logForm="ngForm" (ngSubmit)="formSubmitHandler(logForm)">
 
+        <form class="login-form" #logForm="ngForm" (ngSubmit)="login(logForm)">
 
-            <div class="form-group">
-                <label for="">E-mail: </label>
-                <input class="inpfield" type="email" placeholder="e-mail" name="email" email required ngModel
-                    #email="ngModel" (focus)="onFocus('email')" (blur)="onBlur('email')"
-                    [ngClass]="{ 'error-border': email.invalid && email.touched && emailErrorMessage &&email.value }"
-                    (keyup.enter)="logForm.ngSubmit.emit()" />
-<div></div>
+            <div>
+                <label for="email">E-mail: </label>
+                <input class="inpfield" type="email" id="email" placeholder="xxxxxxx@gmail.com" name="email"
+                    [ngClass]="{ 'inp-error': inputEmail.errors?.['required'] && inputEmail.dirty }" ngModel
+                    #inputEmail="ngModel" required [appEmail]="['bg','com']" />
             </div>
 
-            <div class="form-group">
-                <label for="">Password: </label>
-                <input type="password" placeholder="password" class="inpfield" name="password" ngModel required
-                    #password="ngModel" [appMaxCount]="6" (focus)="onFocus('password')" (blur)="onBlur('password')"
-                    [ngClass]="{ 'error-border': passwordErrorMessage }" (keyup.enter)="logForm.ngSubmit.emit()" />
+            <div>
+                <label for="password">Password: </label>
+                <input class="inpfield" type="password" id="password" placeholder="password" name="password" ngModel
+                    #inputPassword="ngModel"
+                     required
+                     minlength="6" 
+                    [ngClass]="{ 'inp-error': inputPassword.errors?.['required'] && inputPassword.dirty }"
+                    />
             </div>
 
             <p>Password minimum 6 characters long!</p>
-            <button class="a-button">Sign in</button>
+
+            <button type="submit" class="a-button">Sign in</button>
 
             <p>Don't have an account? <a class="a-txt" routerLink="/register">Register</a> </p>
         </form>
+
+
+
+
     </div>
 
-
-
-
 </main>
-
 
 <!-- <a class="a-button" (click)="logForm.ngSubmit.emit()">Sign in</a> -->
-<!-- (click)="login(email.value, password.value)" -->
-<!-- 
-
-<main class="login-cont">
-
-    <form class="login-form" >
-        <h4>Login:</h4>
-        <label for="e-mail">E-mail:
-            <input (keyup.enter)="login(email.value, password.value)" type="email" placeholder="e-mail" class="inpfield" #email>
-        </label>
-
-        <label for="password">Password:
-            <input (keyup.enter)="login(email.value, password.value)" type="password" placeholder="password" class="inpfield" #password>
-        </label>
-
-        <a class="a-button" (click)="login(email.value, password.value)">Sign in</a>
-
-        <p>Don't have an account? <a class="a-txt" routerLink="/register">Register</a> </p>
-    </form>
-</main>
-
- -->
