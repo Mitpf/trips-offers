@@ -1,5 +1,65 @@
 <main class="register-cont">
 
+    <div class="error-container">
+        <ng-container *ngIf="form.get('username')?.touched">
+            <p *ngIf="form.get('username')?.errors?.['required']"> username required!</p>
+            <p *ngIf="form.get('username')?.errors?.['minlength']">username minimum 5 letters!</p>
+
+        </ng-container>
+
+        <ng-container *ngIf="form.get('email')?.touched">
+            <p *ngIf="form.get('email')?.errors?.['required']"> Email required!</p>
+            <p *ngIf="form.get('email')?.errors?.['emailValidator']">Email is not valid!</p>
+        </ng-container>
+
+        <ng-container *ngIf="form.get('pswGroup')?.get('repass')?.touched">
+            <p *ngIf="form.get('pswGroup')?.errors?.['matchPassValidator']">No matching passwords!</p>
+        </ng-container>
+
+        <ng-container *ngIf="form.get('pswGroup')?.get('password')?.touched">
+            <p *ngIf="form.get('pswGroup')?.get('password')?.errors?.['required']">Password required!</p>
+            <p *ngIf="form.get('pswGroup')?.get('password')?.errors?.['minlength']">Password minimum long 6 chracters!
+            </p>
+        </ng-container>
+
+        <ng-container *ngIf="form.get('pswGroup')?.get('repass')?.touched">
+            <p *ngIf="form.get('pswGroup')?.get('repass')?.errors?.['required']">Repass required!</p>
+            <p *ngIf="form.get('pswGroup')?.get('repass')?.errors?.['minlength']">Repass minimum long 6 characters!</p>
+        </ng-container>
+    </div>
+
+    <form class="register-form" [formGroup]="form" (ngSubmit)="register()">
+        <h4>Create new account:</h4>
+
+        <label for="userName">Username:
+            <input type="text" placeholder="username" class="inpfield" formControlName="username">
+        </label>
+
+        <label for="e-mail">E-mail:
+            <input type="email" placeholder="email@xxx.vv" class="inpfield" formControlName="email">
+        </label>
+
+        <ng-container formGroupName="pswGroup">
+            <label for="password">Password:
+                <input type="password" placeholder="password" class="inpfield" formControlName="password">
+            </label>
+
+            <label for="repassword">Repassword:
+                <input type="password" placeholder="repeat password" class="inpfield" formControlName="repass">
+            </label>
+        </ng-container>
+
+
+        <button class="a-button">Register now</button>
+
+        <p>Already have an account? <a class="a-txt" routerLink="/login">Login</a> </p>
+    </form>
+</main>
+
+
+<!-- 
+<main class="register-cont">
+
     <form class="register-form" action="">
         <h4>Create new account:</h4>
 
@@ -26,3 +86,5 @@
         <p>Already have an account? <a class="a-txt" routerLink="/login">Login</a> </p>
     </form>
 </main>
+
+ -->
