@@ -7,4 +7,4 @@ import { GlobalLoaderComponent } from './global-loader/global-loader.component';
   imports: [CommonModule],
   exports:[GlobalLoaderComponent]
 })
-export class GlobalComponentsModule {}
+export class GlobalsModule {}

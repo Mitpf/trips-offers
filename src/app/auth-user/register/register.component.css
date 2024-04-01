@@ -6,13 +6,14 @@
     width: 100vw;
     height: 100%;
     align-items: center;
+    
     gap:1em;
 }
 
 .register-form {
     display: flex;
     flex-direction: column;
-    gap: .7em;
+    gap: .4em;
     align-items: end;
     border-radius: .4em;
     padding: 1.4em;
@@ -71,11 +72,9 @@ form h4 {
 
 
 .error-container {
-
     border-radius: .2em;
-    padding: .4em;
-    color: rgb(249, 0, 0);
-    height: 6em;
+    color: rgb(57, 244, 6);
+    background: rgba(70, 70, 78, 0.747);    
 }
 
 .inp-error {
