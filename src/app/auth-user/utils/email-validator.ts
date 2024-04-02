@@ -13,7 +13,7 @@ export const emailValidator = (domains: string[],providers: string[] ): Validato
   return (control) => {
     const isEmailInvalid = control.value === '' || regExp.test(control.value);
 
-    console.log('Test Regex', isEmailInvalid, 'control value: ', control.value);
+    //console.log('Test Regex', isEmailInvalid, 'control value: ', control.value);
 
     return isEmailInvalid ? null : { emailValidator: true };
   };

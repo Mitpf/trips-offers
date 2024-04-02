@@ -29,7 +29,6 @@ export const EMAIL_PROVIDERS = [
   'onet',
   'inbox',
   'vip',
-  'hr',
   'posta',
   'mts',
   'open',

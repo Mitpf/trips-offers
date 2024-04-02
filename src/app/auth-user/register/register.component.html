@@ -1,5 +1,10 @@
 <main class="register-cont">
 
+    <!-- <div [ngClass]="{ 'validation-message': inpvalidErrors.length }">
+        <ng-container *ngFor="let error of inpvalidErrors">
+            <div>{{error.message}}</div>
+        </ng-container>
+    </div> -->
 
 
 
@@ -8,49 +13,66 @@
         <h4>Create new account:</h4>
 
         <label for="userName">Username:
-            <input [ngClass]="{ 'inp-error': hasErr('username') }" type="text" placeholder="username" class="inpfield" formControlName="username" >
+            <input [ngClass]="{ 'inp-error': hasErr('username') }" type="text" placeholder=" - minimum 3 letters" class="inpfield"
+                formControlName="username">
         </label>
-        <ng-container *ngFor="let error of inpvalidErrors">
-            <div class="error-container" *ngIf="error.name=='username'"> {{error.message}}</div>
-        </ng-container>
 
+        <div class="validation-message">
+            <ng-container *ngFor="let error of inpvalidErrors">
+                <p *ngIf="error.name=='username'">{{error.message}}</p>
+            </ng-container>
+        </div>
 
         <label for="e-mail">E-mail:
-            <input [ngClass]="{ 'inp-error': hasErr('email') }" type="email" placeholder="email@xxx.vv" class="inpfield" formControlName="email">
+            <input [ngClass]="{ 'inp-error': hasErr('email') }" type="email" placeholder="valid email@xxx.vv " class="inpfield"
+                formControlName="email">
         </label>
-        <ng-container *ngFor="let error of inpvalidErrors">
-            <div class="error-container" *ngIf="error.name=='email'"> {{error.message}}</div>
-        </ng-container>
 
+        <div class="validation-message">
+            <ng-container *ngFor="let error of inpvalidErrors">
+                <p *ngIf="error.name=='email'">{{error.message}}</p>
+            </ng-container>
+        </div>
 
         <ng-container formGroupName="pswGroup">
 
             <label for="password">Password:
-                <input [ngClass]="{ 'inp-error': hasErr('repass')||hasErr('pswGroup') }" type="password" placeholder="password" class="inpfield" formControlName="password">
+                <input [ngClass]="{ 'inp-error': hasErr('password')||(hasErr('pswGroup')&&isDirtFGcontrol('pswGroup','password')&&isDirtFGcontrol('pswGroup','repass')) }" type="password"
+                    placeholder="password-min. 6 symbols" class="inpfield" formControlName="password">
             </label>
-            <ng-container *ngFor="let error of inpvalidErrors">
-                <div class="error-container" *ngIf="error.name=='password'"> {{error.message}}</div>
-            </ng-container>
 
+            <div class="validation-message">
+                <ng-container *ngFor="let error of inpvalidErrors">
+                    <p *ngIf="error.name=='password'">{{error.message}}</p>
+                </ng-container>
+            </div>
 
             <label for="repassword">Repassword:
-                <input [ngClass]="{ 'inp-error': hasErr('repass')||hasErr('pswGroup') }" type="password" placeholder="repeat password" class="inpfield" formControlName="repass">
+                <input [ngClass]="{ 'inp-error': hasErr('repass')||(hasErr('pswGroup')&&isDirtFGcontrol('pswGroup','password')&&isDirtFGcontrol('pswGroup','repass')) }" type="password"
+                    placeholder="repeat password" class="inpfield" formControlName="repass">
             </label>
+
+            <div class="validation-message">
+                <ng-container *ngFor="let error of inpvalidErrors">
+                    <p *ngIf="error.name=='repass'">{{error.message}}</p>
+                </ng-container>
+            </div>
+
+        </ng-container>
+
+        <!-- validation message match passwords -->
+        <div class="validation-message">
             <ng-container *ngFor="let error of inpvalidErrors">
-                <div class="error-container" *ngIf="error.name=='repass'"> {{error.message}}</div>
+                <p  *ngIf="error.name=='pswGroup' && isDirtFGcontrol('pswGroup','password')&&isDirtFGcontrol('pswGroup','repass')"> {{error.message}}</p>
             </ng-container>
-
-        </ng-container>
-
-        <ng-container  *ngFor="let error of inpvalidErrors">
-            <div class="error-container" *ngIf="error.name=='pswGroup'"> {{error.message}}</div>
-        </ng-container>
+        </div>
 
 
-        <button class="a-button">Register now</button>
+
+        <button [ngClass]="form.invalid ? 'a-button-disabled':'a-button'">Register now</button>
 
         <p>Already have an account? <a class="a-txt" routerLink="/login">Login</a> </p>
     </form>
 
-
+    <!--  <span [ngClass]="{'uncheck': isNeverTouchedEmail() || hasErr('email'), 'check': !isNeverTouchedEmail() && !hasErr('email')}">✓</span> -->
 </main>

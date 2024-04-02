@@ -31,12 +31,20 @@ export class RegisterComponent implements OnInit {
     private formVService: FormValidatonService
   ) {}
 
+  /*//# ---------------------_ */
+  /* //$-----VALIDATION------- */
+  /*//# --------------------- */
+
+  touchedCount: number = 0;
   inpvalidErrors: ValidationError[] = [];
 
   /* Setting validators to controls */
   form = this.fb.group({
     username: ['', [Validators.required, Validators.minLength(3)]],
-    email: ['', [Validators.required, emailValidator(EMAIL_DOMAINS, EMAIL_PROVIDERS)]],
+    email: [
+      '',
+      [Validators.required, emailValidator(EMAIL_DOMAINS, EMAIL_PROVIDERS)],
+    ],
     password: [''],
     repass: [''],
     pswGroup: this.fb.group(
@@ -76,6 +84,8 @@ export class RegisterComponent implements OnInit {
   /* update message array with active validation err messages */
 
   ngOnInit(): void {
+    this.touchedCount = 0;
+
     this.form.valueChanges.subscribe(() => {
       this.inpvalidErrors = this.formVService.updateErrors(
         this.form,
@@ -85,11 +95,17 @@ export class RegisterComponent implements OnInit {
   }
 
   /* udpate err-messages according touching event for every control/input/group , udpate arr-err-message  */
+  /* // $ it is better to use fromEvent + subscribing in oninit */
   ngDoCheck() {
+    if (this.form.get('email')?.touched) {
+      this.touchedCount++;
+    }
+
     this.glValidService.checkTouched(
       this.form,
       ['username', 'email', 'password', 'repass', 'pswGroup'],
       this.inpvalidErrors,
+      // # callback
       this.formVService.updateErrors.bind(
         this.formVService,
         this.form,
@@ -109,23 +125,43 @@ export class RegisterComponent implements OnInit {
     return this.inpvalidErrors.some((err) => err.name == name);
   }
 
-  /* ----- */
+  isNeverTouchedEmail() {
+    if (this.touchedCount == 0) {
+      return true;
+    }
+
+    return false;
+  }
+
+  isTouched(nameControl: string) {
+    return !!this.form.get(nameControl)?.touched;
+  }
+
+  isDirtFGcontrol(groupName:string, nameControl: string) {
+    
+    return this.form.get(groupName)?.get(nameControl)?.dirty;
+  }
+
+  /*//# --------------------- */
+  /*//$ ----- $REGISTER------- */
+  /*//# --------------------- */
 
   register(): void {
     if (this.form.invalid) {
       return;
     }
 
-    //console.log(this.form.value);
+    const { email, username } = this.form.value;
+    const password = this.form.value.pswGroup?.password;
+
+    if (
+      typeof email == 'string' &&
+      typeof username == 'string' &&
+      typeof password == 'string'
+    ) {
+      this.authService.register(email, username, password);
+    }
   }
 
-  /* register(
-    e: Event,
-    email: string,
-    username: string,
-    password: string,
-    repassword: string
-  ) {
-    this.authService.register(e, email, username, password, repassword);
-  } */
+  /*  ------ */
 }

@@ -11,9 +11,9 @@ export class LoginComponent {
   constructor(private authService: AuthService) {}
 
   login(form: NgForm) {
-   /*  if (form.invalid) {
+    if (form.invalid) {
       return;
-    } */
+    }
     
     const { email, password } = form.value;
     console.log(email, password);

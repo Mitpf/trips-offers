@@ -15,23 +15,17 @@ export class AuthService {
   ) {}
 
   register(
-    e: Event,
     email: string,
     username: string,
     password: string,
-    repassword: string
   ) {
-    e.preventDefault();
-
-    // todo some validation email, passwords
-    if (password != repassword) {
-      alert('passwords not matched!');
-    }
+    
 
     const regData = { email, username, password };
 
     this.apiService.post('/users', regData).subscribe((userData) => {
-      UtilService.setUserData(userData);
+      //UtilService.setUserData(userData);
+      this.login(email,password)
       this.router.navigateByUrl('/home');
     },
     (error)=>{
@@ -41,8 +35,9 @@ export class AuthService {
     );
   }
 
-  login(username: string, password: string) {
-    this.apiService.post('/login', { username, password }).subscribe(
+  // username can be email
+  login(email: string, password: string) {
+    this.apiService.post('/login', { email, password }).subscribe(
       (userData) => {
         UtilService.setUserData(userData);
         this.router.navigateByUrl('/home');
