@@ -16,6 +16,7 @@ import {
   ValidationError,
 } from 'src/app/globals/types/validation-errors';
 import { FormValidatonService } from 'src/app/globals/global-services/form-validaton.service';
+import { EMAIL_PROVIDERS } from '../constants/email-providers';
 
 @Component({
   selector: 'app-register',
@@ -34,8 +35,8 @@ export class RegisterComponent implements OnInit {
 
   /* Setting validators to controls */
   form = this.fb.group({
-    username: ['', [Validators.required, Validators.minLength(5)]],
-    email: ['', [Validators.required, emailValidator(EMAIL_DOMAINS)]],
+    username: ['', [Validators.required, Validators.minLength(3)]],
+    email: ['', [Validators.required, emailValidator(EMAIL_DOMAINS, EMAIL_PROVIDERS)]],
     password: [''],
     repass: [''],
     pswGroup: this.fb.group(
@@ -53,7 +54,7 @@ export class RegisterComponent implements OnInit {
   private defErrMessages: ErrorDefinition = {
     username: {
       required: 'Username is required!',
-      minlength: 'Username minimum 6 letters long!',
+      minlength: 'Username minimum 3 letters long!',
     },
     email: {
       required: 'Email is required!',
@@ -101,7 +102,7 @@ export class RegisterComponent implements OnInit {
       this.defErrMessages
     );
 
-    console.log(this.inpvalidErrors);
+    //console.log(this.inpvalidErrors);
   }
 
   hasErr(name: string) {

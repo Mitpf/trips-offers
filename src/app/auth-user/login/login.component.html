@@ -23,7 +23,7 @@
                 <label for="email">E-mail: </label>
                 <input class="inpfield" type="email" id="email" placeholder="xxxxxxx@gmail.com" name="email"
                     [ngClass]="{ 'inp-error': inputEmail.errors?.['required'] && inputEmail.dirty }" ngModel
-                    #inputEmail="ngModel" required [appEmail]="['bg','com']" />
+                    #inputEmail="ngModel" required appEmail [domains]="['bg','com']" [providers]="['abv','gmail']" />
             </div>
 
             <div>

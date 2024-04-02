@@ -13,6 +13,7 @@
 .register-form {
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
     gap: .4em;
     align-items: end;
     border-radius: .4em;
@@ -74,7 +75,8 @@ form h4 {
 .error-container {
     border-radius: .2em;
     color: rgb(57, 244, 6);
-    background: rgba(70, 70, 78, 0.747);    
+    background: rgba(70, 70, 78, 0.747);   
+   
 }
 
 .inp-error {
