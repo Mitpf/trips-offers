@@ -1,6 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
-import { NgForm } from '@angular/forms';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormGroup,
+  NgForm,
+  Validators,
+} from '@angular/forms';
+import { GlobalValidationService } from 'src/app/globals/global-services/global-validation.service';
+import { FormValidatonService } from 'src/app/globals/global-services/form-validaton.service';
+import { ValidationError } from 'src/app/globals/types/validation-errors';
+import { EMAIL_DOMAINS } from '../constants/email-domains';
+import { EMAIL_PROVIDERS } from '../constants/email-providers';
+import { emailValidator } from '../utils/email-validator';
 
 @Component({
   selector: 'app-login',
@@ -8,21 +20,78 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private fb: FormBuilder,
+    private glValidService: GlobalValidationService,
+    private formVService: FormValidatonService
+  ) {}
 
-  login(form: NgForm) {
-    if (form.invalid) {
+  // $ validation //
+  inpvalidErrors: ValidationError[] = [];
+
+  form = this.fb.group({
+    email: [
+      '',
+      [Validators.required, emailValidator(EMAIL_DOMAINS, EMAIL_PROVIDERS)],
+    ],
+    password: ['', [Validators.required, Validators.minLength(6)]],
+  });
+
+  
+
+  getValidErrMessages(form: FormGroup, name: string): string {
+    //#getControlName from control
+    const formControl = form.get(name);
+    const controls = formControl?.parent
+      ? Object.keys(formControl.parent.controls)
+      : [];
+    const controlName =
+      controls.length > 0
+        ? controls.find((key) => this.form.get(key) == formControl)
+        : '';
+
+    if (
+      formControl?.hasError('required') &&
+      (formControl.dirty || formControl.touched)
+    ) {
+      return `${controlName} is required!`;
+    }
+
+    if (
+      formControl?.hasError('minlength') &&
+      (formControl.dirty || formControl.touched)
+    ) {
+      return `${controlName} minimun ${formControl.errors?.['minlength'].requiredLength} letters!`;
+    }
+
+    if (
+      formControl?.hasError('emailValidator') &&
+      (formControl?.dirty || formControl?.touched)
+    ) {
+      return 'Invalid email!';
+    }
+    return '';
+  }
+
+  getErrMessageIn = this.getValidErrMessages.bind(this, this.form);
+
+  /* // # alternative way
+   getErrMessageIn = (name: string) => {
+     return this.getValidErrMessages(this.form, name);
+   } */
+
+  //$ Login
+
+  login() {
+    if (this.form.invalid) {
       return;
     }
-    
-    const { email, password } = form.value;
-    console.log(email, password);
-    this.authService.login(email, password);
+
+    const { email, password } = this.form.value;
+
+    if (email && password) {
+      this.authService.login(email, password);
+    }
   }
 }
-
-/* 
-login(email: string, password: string) {
-    this.authService.login(email, password);
-  }
-*/

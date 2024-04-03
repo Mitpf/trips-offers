@@ -1,7 +1,7 @@
 <main class="login-cont">
 
     <div class="error-container">
-        <ng-container *ngIf="inputEmail.dirty">
+        <!-- <ng-container *ngIf="inputEmail.dirty">
             <p *ngIf="inputEmail.errors?.['required']"> Email required!</p>
             <p *ngIf="inputEmail.errors?.['emailValidator']">Email-validation failed!</p>
 
@@ -10,35 +10,31 @@
         <ng-container *ngIf="inputPassword.dirty">
             <p *ngIf="inputPassword.errors?.['required']"> Password required!</p>
             <p *ngIf="inputPassword.errors?.['minlength']"> Password must be at least 6 symbols long!</p>
-        </ng-container>
+        </ng-container> -->
     </div>
 
     <div class="form-container">
 
         <h4>Login:</h4>
 
-        <form class="login-form" #logForm="ngForm" (ngSubmit)="login(logForm)">
+        <form class="login-form" [formGroup]="form" (ngSubmit)="login()">
 
             <div>
                 <label for="email">E-mail: </label>
-                <input class="inpfield" type="email" id="email" placeholder="xxxxxxx@gmail.com" name="email"
-                    [ngClass]="{ 'inp-error': inputEmail.errors?.['required'] && inputEmail.dirty }" ngModel
-                    #inputEmail="ngModel" required appEmail [domains]="['bg','com']" [providers]="['abv','gmail']" />
+
+                <input  class="inpfield" type="email" placeholder="valid mail@xxxx.vvv" [ngClass]="{'inp-error':getErrMessageIn('email')}"
+                    formControlName="email" />
             </div>
+            <div class="validation-message" >{{getErrMessageIn('email')}} </div>
 
             <div>
                 <label for="password">Password: </label>
-                <input class="inpfield" type="password" id="password" placeholder="password" name="password" ngModel
-                    #inputPassword="ngModel"
-                     required
-                     minlength="6" 
-                    [ngClass]="{ 'inp-error': inputPassword.errors?.['required'] && inputPassword.dirty }"
-                    />
+                <input class="inpfield" type="password" placeholder="minimum 6 characters"
+                    [ngClass]="{ 'inp-error': getErrMessageIn('password')}" formControlName="password" />
             </div>
+            <div class="validation-message">{{getErrMessageIn('password')}}</div>
 
-            <p>Password minimum 6 characters long!</p>
-
-            <button type="submit" class="a-button">Sign in</button>
+            <button [ngClass]="form.invalid ? 'a-button-disabled':'a-button'">Sign in</button>
 
             <p>Don't have an account? <a class="a-txt" routerLink="/register">Register</a> </p>
         </form>

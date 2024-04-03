@@ -1,12 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { AuthService } from '../auth.service';
-import {
-  FormBuilder,
-  Validators,
-  ValidationErrors,
-  AbstractControl,
-  FormGroup,
-} from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { emailValidator } from '../utils/email-validator';
 import { EMAIL_DOMAINS } from '../constants/email-domains';
 import { matchPassValidator } from '../utils/password-matcher';
@@ -23,7 +17,7 @@ import { EMAIL_PROVIDERS } from '../constants/email-providers';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent  {
   constructor(
     private authService: AuthService,
     private fb: FormBuilder,
@@ -31,13 +25,10 @@ export class RegisterComponent implements OnInit {
     private formVService: FormValidatonService
   ) {}
 
-  /*//# ---------------------_ */
-  /* //$-----VALIDATION------- */
-  /*//# --------------------- */
-
-  touchedCount: number = 0;
-  inpvalidErrors: ValidationError[] = [];
-
+ 
+   //#-----VALIDATION------- 
+  //$_______________________
+ 
   /* Setting validators to controls */
   form = this.fb.group({
     username: ['', [Validators.required, Validators.minLength(3)]],
@@ -81,64 +72,21 @@ export class RegisterComponent implements OnInit {
     },
   };
 
-  /* update message array with active validation err messages */
+  getErrMessage(): ValidationError[] {
+    return this.formVService.updateErrors(this.form, this.defErrMessages);
+  }
+ 
 
-  ngOnInit(): void {
-    this.touchedCount = 0;
-
-    this.form.valueChanges.subscribe(() => {
-      this.inpvalidErrors = this.formVService.updateErrors(
-        this.form,
-        this.defErrMessages
-      );
-    });
+  hasErr(name: string) {  
+    return this.getErrMessage().some((err) => err.name == name);
   }
 
-  /* udpate err-messages according touching event for every control/input/group , udpate arr-err-message  */
-  /* // $ it is better to use fromEvent + subscribing in oninit */
-  ngDoCheck() {
-    if (this.form.get('email')?.touched) {
-      this.touchedCount++;
-    }
-
-    this.glValidService.checkTouched(
-      this.form,
-      ['username', 'email', 'password', 'repass', 'pswGroup'],
-      this.inpvalidErrors,
-      // # callback
-      this.formVService.updateErrors.bind(
-        this.formVService,
-        this.form,
-        this.defErrMessages
-      )
-    );
-
-    this.inpvalidErrors = this.formVService.updateErrors(
-      this.form,
-      this.defErrMessages
-    );
-
-    //console.log(this.inpvalidErrors);
-  }
-
-  hasErr(name: string) {
-    return this.inpvalidErrors.some((err) => err.name == name);
-  }
-
-  isNeverTouchedEmail() {
-    if (this.touchedCount == 0) {
-      return true;
-    }
-
-    return false;
-  }
 
   isTouched(nameControl: string) {
     return !!this.form.get(nameControl)?.touched;
   }
 
-  isDirtFGcontrol(groupName:string, nameControl: string) {
-    
+  isDirtFGcontrol(groupName: string, nameControl: string) {
     return this.form.get(groupName)?.get(nameControl)?.dirty;
   }
 

@@ -11,32 +11,33 @@ export class FormValidatonService {
 
   /*  */
   updateErrors(form: FormGroup, defErrMessages: ErrorDefinition): ValidationError[] {
-    const inpvalidErrors: ValidationError[] = [];
+    const validErrMessages: ValidationError[] = [];
     if (form) {
-      this.processControl(form, '', inpvalidErrors, defErrMessages);
+      this.processControl(form, '', validErrMessages, defErrMessages);
     }
     
-    return inpvalidErrors;
+    return validErrMessages;
   }
 
-  private processControl(control: AbstractControl, groupName: string, inpvalidErrors: ValidationError[], defErrMessages: ErrorDefinition): void {
+  private processControl(control: AbstractControl, groupName: string, validErrMessages: ValidationError[], defErrMessages: ErrorDefinition): void {
+    
     if (control instanceof FormGroup) {
       // check for active errors of group
       if (control.errors) {
         Object.keys(control.errors).forEach((errorKey) => {
-          inpvalidErrors.push({
+          validErrMessages.push({
             name: groupName,
             message: defErrMessages[groupName]?.[errorKey] || 'no Validation error message!',
           });
         });
       }
       
-      // all subcontrols
+      //  check for subcontrols
       Object.keys(control.controls).forEach((controlName) => {
         const subControl = control.get(controlName);
         if (subControl) {
           // recursive invoke
-          this.processControl(subControl, controlName, inpvalidErrors, defErrMessages);
+          this.processControl(subControl, controlName, validErrMessages, defErrMessages);
         }
       });
     } else {
@@ -45,7 +46,7 @@ export class FormValidatonService {
         const errors: ValidationErrors | null = control.errors;
         if (errors) {
           Object.keys(errors).forEach((errorKey) => {
-            inpvalidErrors.push({
+            validErrMessages.push({
               name: groupName,
               message: defErrMessages[groupName]?.[errorKey] || 'no Validation error message!',
             });
@@ -53,56 +54,9 @@ export class FormValidatonService {
         }
       }
     }
+    
   }
 
 
 }
 
-/* 
-updateErrors(): void {
-    this.inpvalidErrors = [];
-    if (this.form) {
-      this.processControl(this.form, '');
-    }
-  }
-
-  private processControl(control: AbstractControl, groupName: string): void {
-    if (control instanceof FormGroup) {
-      // check for active errors of group
-      if (control.errors) {
-        Object.keys(control.errors).forEach((errorKey) => {
-          this.inpvalidErrors.push({
-            name: groupName,
-            message:
-              this.defErrMessages[groupName]?.[errorKey] ||
-              'no Validation error message!',
-          });
-        });
-      }
-
-      // all subcontrols
-      Object.keys(control.controls).forEach((controlName) => {
-        const subControl = control.get(controlName);
-        if (subControl) {
-          // recursive invoke
-          this.processControl(subControl, controlName);
-        }
-      });
-    } else {
-      // check for active errors of current control
-      if (control && control.invalid && (control.dirty || control.touched)) {
-        const errors: ValidationErrors | null = control.errors;
-        if (errors) {
-          Object.keys(errors).forEach((errorKey) => {
-            this.inpvalidErrors.push({
-              name: groupName,
-              message:
-                this.defErrMessages[groupName]?.[errorKey] ||
-                'no Validation error message!',
-            });
-          });
-        }
-      }
-    }
-  }
-*/
