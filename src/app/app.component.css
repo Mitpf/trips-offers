@@ -54,7 +54,7 @@ app-footer {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #263856; 
+  background-color: #485975; 
   border-radius: 5px; 
 }
 
@@ -68,5 +68,5 @@ app-footer {
 }
 
 ::-webkit-scrollbar-track {
-  background-color: rgb(107, 139, 179); /* Промяна на цвета на бялото поле на скролера на черно */
+  background-color: rgb(107, 139, 179,.0); /* Промяна на цвета на бялото поле на скролера на черно */
 }

@@ -1,1 +1,35 @@
-<p>home works!</p>
+<main class="home-cont">
+
+    <div class="card">
+
+
+        <h4>Welcome to our website for exotic travel adventures!</h4>
+
+        <p>Hello and welcome to the world of adventures! We are your guides to incredible and extraordinary destinations
+            around the globe. Our website is the gateway to unique journeys that will take you to the most remote
+            corners of the planet.
+        </p>
+        <p>Experience the thrill of jeep excursions, uncover the secrets of the sea with boats or ships, soar above the
+            clouds with airplanes, explore the world on two wheels, on foot, and more. From African safaris to unique
+            natural wonders worldwide, our travels offer exciting experiences that you won't forget.</p>
+
+        <p>But our adventures don't stop at nature. We also offer cultural safaris that will take you to the most
+            intriguing cultural destinations around the world. From ancient landmarks to modern cities, our excursions
+            are
+            journeys into the diversity of cultures and traditions of our world.</p>
+
+        <p>So, if you're ready for adventure, join us and get ready for incredible experiences. Welcome to the world of
+            exotic travel!</p>
+
+        <div class="links"><label>Take a look at our offers: </label> <a routerLink="/offers-catalog">trip Offers</a>
+            <label> visit our fallery: </label> <a routerLink="/trip-gallery">Adventures Gallery</a>
+        </div>
+
+        <div class="links" *ngIf="!isLoggedUser">
+            If you want to add your offer or save favorites, register here: <a routerLink="/register">register</a>
+            or if you have already account, login here: <a routerLink="/login">Login</a>
+        </div>
+
+
+    </div>
+</main>
