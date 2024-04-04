@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './auth-user/login/login.component';
 import { RegisterComponent } from './auth-user/register/register.component';
 import { HomeComponent } from './home/home.component';
-import { FavoritesComponent } from './user/favorites/favorites.component';
+import { FavoritesComponent } from './logged-user/favorites/favorites.component';
 import { Page404Component } from './error-messages/page-404/page-404.component';
 
 const routes: Routes = [

@@ -7,9 +7,9 @@ import {
   NgForm,
   Validators,
 } from '@angular/forms';
-import { GlobalValidationService } from 'src/app/globals/global-services/global-validation.service';
-import { FormValidatonService } from 'src/app/globals/global-services/form-validaton.service';
-import { ValidationError } from 'src/app/globals/types/validation-errors';
+import { GlobalValidationService } from '../../globals/global-services/global-validation.service';
+import { FormValidatonService } from '../../globals/global-services/form-validaton.service';
+import { ValidationError } from '../../globals/types/validation-errors';
 import { EMAIL_DOMAINS } from '../constants/email-domains';
 import { EMAIL_PROVIDERS } from '../constants/email-providers';
 import { emailValidator } from '../utils/email-validator';

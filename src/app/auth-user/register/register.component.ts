@@ -4,12 +4,12 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { emailValidator } from '../utils/email-validator';
 import { EMAIL_DOMAINS } from '../constants/email-domains';
 import { matchPassValidator } from '../utils/password-matcher';
-import { GlobalValidationService } from 'src/app/globals/global-services/global-validation.service';
+import { GlobalValidationService } from '../../globals/global-services/global-validation.service';
 import {
   ErrorDefinition,
   ValidationError,
-} from 'src/app/globals/types/validation-errors';
-import { FormValidatonService } from 'src/app/globals/global-services/form-validaton.service';
+} from '../../globals/types/validation-errors';
+import { FormValidatonService } from '../../globals/global-services/form-validaton.service';
 import { EMAIL_PROVIDERS } from '../constants/email-providers';
 
 @Component({

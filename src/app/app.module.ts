@@ -7,7 +7,7 @@ import { GlobalsModule } from './globals/globals.module';
 import { MainComponentsModule } from './main-components/main-components.module';
 import { AuthUserModule } from './auth-user/auth-user.module';
 import { HomeComponent } from './home/home.component';
-import { UserModule } from './user/user.module';
+import { LoggedUserModule } from './logged-user/logged-user.module';
 import { OffersModule } from './offers/offers.module';
 import { ErrorMessagesModule } from './error-messages/error-messages.module';
 
@@ -20,7 +20,7 @@ import { ErrorMessagesModule } from './error-messages/error-messages.module';
     GlobalsModule,
     MainComponentsModule,
     AuthUserModule,
-    UserModule,
+    LoggedUserModule,
     OffersModule,
     ErrorMessagesModule,
     AppRoutingModule,
