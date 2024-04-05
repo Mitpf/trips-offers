@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { UserB4app } from '../globals/types/back4app';
 
 @Injectable({
   providedIn: 'root',
@@ -6,8 +7,9 @@ import { Injectable } from '@angular/core';
 export class UtilService {
   constructor() {}
 
-  static setUserData(data: Object) {
-    localStorage.setItem('userData', JSON.stringify(data));
+  static setUserData(data: UserB4app) {
+    const userId = data.objectId;
+    localStorage.setItem('userData', JSON.stringify({ ...data, userId }));
   }
 
   static getUserData() {
@@ -20,6 +22,20 @@ export class UtilService {
 
   static clearUserData() {
     localStorage.removeItem('userData');
+  }
+
+  static createPointer(className: string, objectId: string) {
+    return { __type: 'Pointer', className, objectId };
+  }
+
+  static addOwnerPointer(record: Object, ownerId: string) {
+    return { ...record, owner: this.createPointer('_User', ownerId) };
+  }
+
+  static addOwner(record:{owner:{}}, ownerId:string) {
+    const data = Object.assign({}, record);
+    data.owner = this.createPointer('_User', ownerId);
+    return data;
   }
 
 }

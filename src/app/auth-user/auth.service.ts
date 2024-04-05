@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ApiService } from '../app-services-utils/api.service';
 import { UtilService } from '../app-services-utils/util.service';
 import { Router } from '@angular/router';
+import {UserB4app}from '../globals/types/back4app';
 
 @Injectable({
   providedIn: 'root',
@@ -39,7 +40,7 @@ export class AuthService {
   login(email: string, password: string) {
     this.apiService.post('/login', { email, password }).subscribe(
       (userData) => {
-        UtilService.setUserData(userData);
+        UtilService.setUserData(userData as UserB4app);
         this.router.navigateByUrl('/home');
       },
       (error) => {

@@ -14,31 +14,39 @@ const restApiKey: string = 'xDflhIlMZQ9VVZSyApQE9cDh4XMB2PJ84CH57Qzy'; //REST AP
 export class ApiService {
   constructor(private http: HttpClient) {}
 
-  private userToken = UtilService.getUserData()?.sessionToken;
+  get userToken() {
+    return UtilService.getUserData()?.sessionToken || '';
+  }
 
   private options = {
     headers: new HttpHeaders({
       'X-Parse-Application-Id': appId,
       'X-Parse-REST-API-Key': restApiKey,
       'X-Parse-JavaScript-Key': apiKey,
-      'X-Parse-Session-Token': this.userToken ? this.userToken : '',
+      'X-Parse-Session-Token': this.userToken,
     }),
-    body:{},
+    body: {},
   };
 
   get(url: string): Observable<Object> {
-
     return this.http.get<Object>(`${host}${url}`, this.options);
   }
 
   post(url: string, data?: Object): Observable<Object> {
+    //!
+    //# update Tokken by request
+
+    let headers = this.options.headers;
+    const userToken = UtilService.getUserData()?.sessionToken || '';
 
     if (data !== undefined) {
-      this.options.headers.set('Content-Type', 'application/json');
-      this.options.body = JSON.stringify(data);
+      headers = headers
+        .set('Content-Type', 'application/json')
+        .set('X-Parse-Session-Token', userToken);
     }
 
-    return this.http.post<Object>(`${host}${url}`, data, this.options);
-  }
+    const options = { headers: headers, body: JSON.stringify(data) };
 
+    return this.http.post<Object>(`${host}${url}`, data, options);
+  }
 }

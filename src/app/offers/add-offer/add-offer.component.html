@@ -5,68 +5,74 @@
 
         <h4>Add your Offer:</h4>
 
-        <form class="add-offer-form">
+        <!-- FORM -->
+        <form class="add-offer-form" [formGroup]="form" (ngSubmit)="addOffer()">
 
             <div class="inp-form">
 
+                <!-- NAME OFFER -->
                 <div class="input-cont">
                     <label>Name: </label>
-                    <input class="inpfield" />
+                    <input class="inpfield" formControlName="name"/>
                     <div class="validation-message">validation-message</div>
                 </div>
 
-
+                <!-- DESTIANTION -->
                 <div class="input-cont">
                     <label>Destination: </label>
-                    <input class="inpfield" />
+                    <input class="inpfield" formControlName="destination"/>
                     <div class="validation-message">validation-message</div>
                 </div>
 
+                <!-- IMAGE imglink-->
                 <div class="input-cont">
                     <label>Image: </label>
-                    <input class="inpfield" />
+                    <input class="inpfield" formControlName="imglink"/>
                     <div class="validation-message">validation-message</div>
                 </div>
 
-
+                <!-- DESCRIPTION -->
                 <div class="input-cont">
                     <label>Description:</label>
-                    <textarea class="inpfield"></textarea>
+                    <textarea class="inpfield" formControlName="description"></textarea>
                     <div class="validation-message">validation-message</div>
                 </div>
 
+                <!-- People min -->
                 <div class="input-cont">
-                    <label>min count people:</label>
-                    <input type="number" class="inpfield"/>
+                    <label>min count people: <input type="number" class="inpfield people" formControlName="minpeople"/></label>
+
                     <div class="validation-message">validation-message</div>
                 </div>
 
+                <!-- People max -->
                 <div class="input-cont">
-                    <label>max count people:</label>
-                    <input type="number" class="inpfield"/>
+                    <label>max count people: <input type="number" class="inpfield people" formControlName="maxpeople"/></label>
+
                     <div class="validation-message">validation-message</div>
                 </div>
 
+                <!-- PRICE -->
                 <div class="input-cont">
                     <label>Price: </label>
-                    <input class="inpfield" type="number" />
+                    <input class="inpfield" type="number" formControlName="price"/>
                     <div class="validation-message">validation-message</div>
                 </div>
 
-
+                <!-- DATE -->
                 <div class="input-cont">
                     <label>Date: </label>
-                    <input class="inpfield" type="date" />
+                    <input class="inpfield" type="date" formControlName="date"/>
                     <div class="validation-message">validation-message</div>
                 </div>
 
-
-
-
             </div>
+
+            <button class="a-button">Add Offer</button>
+
+
         </form>
 
-        <button class="a-button">Add Offer</button>
 
 
     </div>
