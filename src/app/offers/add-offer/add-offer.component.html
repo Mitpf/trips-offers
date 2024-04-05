@@ -5,65 +5,111 @@
 
         <h4>Add your Offer:</h4>
 
-        <!-- FORM -->
+        <!-- FORM OFFER -->
         <form class="add-offer-form" [formGroup]="form" (ngSubmit)="addOffer()">
 
             <div class="inp-form">
 
-                <!-- NAME OFFER -->
+                <!-- NAME -->
                 <div class="input-cont">
+
                     <label>Name: </label>
-                    <input class="inpfield" formControlName="name"/>
-                    <div class="validation-message">validation-message</div>
+                    <input class="inpfield" [ngClass]="{ 'inp-error': getErrIn('name') }" formControlName="name" />
+
+                    <div class="validation-message">
+                        <p *ngIf="getErrIn('name')">{{getErrIn('name')}}</p>
+                    </div>
+
                 </div>
 
-                <!-- DESTIANTION -->
+
+                <!-- DESTINATION -->
                 <div class="input-cont">
                     <label>Destination: </label>
-                    <input class="inpfield" formControlName="destination"/>
-                    <div class="validation-message">validation-message</div>
+                    <input class="inpfield" class="inpfield" [ngClass]="{ 'inp-error': getErrIn('destination') }"
+                        formControlName="destination" />
+
+                    <div class="validation-message">
+                        <p *ngIf="getErrIn('destination')">{{getErrIn('destination')}}</p>
+                    </div>
+
                 </div>
 
                 <!-- IMAGE imglink-->
                 <div class="input-cont">
                     <label>Image: </label>
-                    <input class="inpfield" formControlName="imglink"/>
-                    <div class="validation-message">validation-message</div>
+                    <input class="inpfield" class="inpfield" [ngClass]="{ 'inp-error': getErrIn('imglink') }"
+                        formControlName="imglink" />
+
+                    <div class="validation-message">
+                        <p *ngIf="getErrIn('imglink')">{{getErrIn('imglink')}}</p>
+                    </div>
+
                 </div>
 
                 <!-- DESCRIPTION -->
                 <div class="input-cont">
                     <label>Description:</label>
-                    <textarea class="inpfield" formControlName="description"></textarea>
-                    <div class="validation-message">validation-message</div>
+                    <textarea class="inpfield" class="inpfield" [ngClass]="{ 'inp-error': getErrIn('description') }"
+                        formControlName="description"></textarea>
+
+                    <div class="validation-message">
+                        <p *ngIf="getErrIn('description')">{{getErrIn('description')}}</p>
+                    </div>
+
                 </div>
 
-                <!-- People min -->
-                <div class="input-cont">
-                    <label>min count people: <input type="number" class="inpfield people" formControlName="minpeople"/></label>
 
-                    <div class="validation-message">validation-message</div>
-                </div>
+                <!-- formGroupName="peopleGroup" -->
+                <ng-container formGroupName="peopleGroup">
+                    
+                    <!-- People min -->
+                    <div class="input-cont">
+                        <label>min count people: <input type="number" class="inpfield people"
+                                [ngClass]="{ 'inp-error': getErrIn('minpeople') }"
+                                formControlName="minpeople" /></label>
 
-                <!-- People max -->
-                <div class="input-cont">
-                    <label>max count people: <input type="number" class="inpfield people" formControlName="maxpeople"/></label>
+                        <div class="validation-message">
+                            <p *ngIf="getErrIn('minpeople')">{{getErrIn('minpeople')}}</p>
+                        </div>
 
-                    <div class="validation-message">validation-message</div>
-                </div>
+                    </div>
+
+                    <!-- People max -->
+                    <div class="input-cont">
+                        <label>max count people: <input type="number" class="inpfield people"
+                                [ngClass]="{ 'inp-error': getErrIn('maxpeople') }"
+                                formControlName="maxpeople" /></label>
+
+                        <div class="validation-message">
+                            <p *ngIf="getErrIn('maxpeople')">{{getErrIn('maxpeople')}}</p>
+                        </div>
+                    </div>
+
+                </ng-container>
+
 
                 <!-- PRICE -->
                 <div class="input-cont">
                     <label>Price: </label>
-                    <input class="inpfield" type="number" formControlName="price"/>
-                    <div class="validation-message">validation-message</div>
+                    <input class="inpfield" class="inpfield" [ngClass]="{ 'inp-error': getErrIn('price') }"
+                        type="number" formControlName="price" />
+
+                    <div class="validation-message">
+                        <p *ngIf="getErrIn('price')">{{getErrIn('price')}}</p>
+                    </div>
                 </div>
 
                 <!-- DATE -->
                 <div class="input-cont">
                     <label>Date: </label>
-                    <input class="inpfield" type="date" formControlName="date"/>
-                    <div class="validation-message">validation-message</div>
+                    <input class="inpfield" class="inpfield" [ngClass]="{ 'inp-error': getErrIn('date') }" type="date"
+                        formControlName="date" />
+
+                    <div class="validation-message">
+                        <p *ngIf="getErrIn('date')">{{getErrIn('date')}}</p>
+                    </div>
+
                 </div>
 
             </div>

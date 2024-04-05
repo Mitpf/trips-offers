@@ -141,7 +141,7 @@ textarea {
     border-radius: .2em;
     color: #00fffb;
     padding: .1em;
-    font-size: 1em;
+    font-size: .85em;
     /* background-color: rgba(70, 70, 78, 0.521); */
     min-height: 1.35em;
     align-self: flex-end;

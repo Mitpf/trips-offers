@@ -1,52 +1,44 @@
-import { DatePipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { AbstractFormGroupDirective, FormBuilder } from '@angular/forms';
-import { UtilService } from '../../app-services-utils/util.service';
+import { Component } from '@angular/core';
 import { OffersService } from '../offers.service';
 import { InputDataOffer } from '../types';
-
-
+import { OfferValidationService } from './offer-validation.service';
 
 @Component({
   selector: 'app-add-offer',
   templateUrl: './add-offer.component.html',
   styleUrls: ['./add-offer.component.css'],
 })
-export class AddOfferComponent implements OnInit {
+export class AddOfferComponent {
   constructor(
-    private fb: FormBuilder,
-    private datePipe: DatePipe,
-    private offerService: OffersService
+    private offerService: OffersService,
+    private ofValidService: OfferValidationService
   ) {}
 
-  userId: string = '';
-  ngOnInit(): void {
-    this.userId = UtilService.getUserData().userId;
+  form = this.ofValidService.formBuildValidators();
+
+  /*//# errMessages -->> [{name: string, message: string}] */
+
+  getErrMessages() {
+    return this.ofValidService.getErrMessages(this.form);
   }
 
-  form = this.fb.group({
-    name: [' '],
-    destination: [' '],
-    imglink: [' '],
-    description: [' '],
-    minpeople: [0],
-    maxpeople: [0],
-    price: [0],
-    date: ['0000000'],
-  });
-
-  formatDate(date: Date): string {
-    return this.datePipe.transform(date, 'dd MMMM yyyy') || '';
+  hasErr(name: string) {
+    return this.getErrMessages().some((err) => err.name == name);
   }
 
+  getErrIn(name: string) {
+    return this.getErrMessages().find((err) => err.name == name)?.message;
+  }
+
+  /* Post data to DB */
   addOffer() {
     if (this.form.invalid) {
       return;
     }
+    const { peopleGroup, ...rest } = this.form.value;
 
-  this.offerService.addOffer(this.form.value as InputDataOffer);
-    
+    const inputData = { ...rest, ...peopleGroup };
+
+    this.offerService.addOffer(inputData as InputDataOffer);
   }
-
-  /* -- - - - */
 }

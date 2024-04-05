@@ -9,7 +9,7 @@ import {
   ErrorDefinition,
   ValidationError,
 } from '../../globals/types/validation-errors';
-import { FormValidatonService } from '../../globals/global-services/form-validaton.service';
+import { FormValidationService } from '../../globals/global-services/form-validation.service';
 import { EMAIL_PROVIDERS } from '../constants/email-providers';
 
 @Component({
@@ -21,8 +21,8 @@ export class RegisterComponent  {
   constructor(
     private authService: AuthService,
     private fb: FormBuilder,
-    private glValidService: GlobalValidationService,
-    private formVService: FormValidatonService
+    //private glValidService: GlobalValidationService,
+    private formVService: FormValidationService
   ) {}
 
  

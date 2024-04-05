@@ -16,6 +16,6 @@ export interface UserB4app {
     minpeople: number,
     maxpeople: number,
     price: number,
-    date: Date,
+    date: string,
     objectId:string
   }

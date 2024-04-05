@@ -5,7 +5,7 @@ import { ErrorDefinition, ValidationError } from '../types/validation-errors';
 @Injectable({
   providedIn: 'root'
 })
-export class FormValidatonService {
+export class FormValidationService {
 
   constructor() { }
 

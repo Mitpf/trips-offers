@@ -8,7 +8,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { GlobalValidationService } from '../../globals/global-services/global-validation.service';
-import { FormValidatonService } from '../../globals/global-services/form-validaton.service';
+import { FormValidationService } from '../../globals/global-services/form-validation.service';
 import { ValidationError } from '../../globals/types/validation-errors';
 import { EMAIL_DOMAINS } from '../constants/email-domains';
 import { EMAIL_PROVIDERS } from '../constants/email-providers';
@@ -24,7 +24,7 @@ export class LoginComponent {
     private authService: AuthService,
     private fb: FormBuilder,
     private glValidService: GlobalValidationService,
-    private formVService: FormValidatonService
+    private formVService: FormValidationService
   ) {}
 
   // $ validation //
