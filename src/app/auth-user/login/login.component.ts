@@ -7,12 +7,11 @@ import {
   NgForm,
   Validators,
 } from '@angular/forms';
-import { GlobalValidationService } from '../../globals/global-services/global-validation.service';
 import { FormValidationService } from '../../globals/global-services/form-validation.service';
 import { ValidationError } from '../../globals/types/validation-errors';
 import { EMAIL_DOMAINS } from '../constants/email-domains';
 import { EMAIL_PROVIDERS } from '../constants/email-providers';
-import { emailValidator } from '../utils/email-validator';
+import { emailValidator } from '../utils-validation/email-validator';
 
 @Component({
   selector: 'app-login',
@@ -23,7 +22,6 @@ export class LoginComponent {
   constructor(
     private authService: AuthService,
     private fb: FormBuilder,
-    private glValidService: GlobalValidationService,
     private formVService: FormValidationService
   ) {}
 

@@ -4,11 +4,15 @@ import { EMAIL_PROVIDERS } from '../constants/email-providers';
 /* providers:string[] */
 
 
-
-export const emailValidator = (domains: string[],providers: string[] ): ValidatorFn => {
+export const emailValidator = (
+  domains: string[],
+  providers: string[]
+): ValidatorFn => {
   const domainString = domains.join('|');
   const providersString = providers.join('|');
-  const regExp = new RegExp(`[a-z0-9]+@(${providersString})\.(${domainString})$`);
+  const regExp = new RegExp(
+    `[a-z0-9]+@(${providersString})\.(${domainString})$`
+  );
 
   return (control) => {
     const isEmailInvalid = control.value === '' || regExp.test(control.value);

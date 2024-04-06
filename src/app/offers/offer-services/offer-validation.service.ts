@@ -5,6 +5,9 @@ import {
   ValidationError,
 } from '../../globals/types/validation-errors';
 import { FormValidationService } from '../../globals/global-services/form-validation.service';
+import { regexValidator } from '../../globals/form-validators/regex-form-validator';
+import { minNumValueValidator } from '../../globals/form-validators/minvalue-form-validator';
+import{pMaxGreatGroupValidator} from '../../offers/validators/peopleGroup-validator'
 
 @Injectable({
   providedIn: 'root',
@@ -14,6 +17,8 @@ export class OfferValidationService {
     private fb: FormBuilder,
     private formVService: FormValidationService
   ) {}
+
+  imgLinkRegex: string = '^https?://.*.(jpg|gif|png)$';
 
   formBuildValidators() {
     return this.fb.group({
@@ -33,18 +38,25 @@ export class OfferValidationService {
           Validators.maxLength(20),
         ],
       ],
-      imglink: ['', [Validators.required /* TODO img link validation */]],
-      description: ['', [Validators.required]],
+      imglink: ['', [Validators.required, regexValidator(this.imgLinkRegex)]],
+      description: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(10),
+          Validators.maxLength(150),
+        ],
+      ],
       minpeople: [0],
       maxpeople: [0],
       peopleGroup: this.fb.group(
         {
-          minpeople: [0, [Validators.required]],
-          maxpeople: [0, [Validators.required]],
+          minpeople: [3, [Validators.required,minNumValueValidator(3)]],
+          maxpeople: [4, [Validators.required]],
         },
         {
           validators: [
-            /* todo peopleValidator */
+            pMaxGreatGroupValidator('minpeople','maxpeople')
           ],
         }
       ),
@@ -52,8 +64,6 @@ export class OfferValidationService {
       date: ['', [Validators.required]],
     });
   }
-
-
 
   /* Define messages errors for any case control-validator */
   private errMessagesDefinitions: ErrorDefinition = {
@@ -68,13 +78,17 @@ export class OfferValidationService {
       maxlength: 'destination maximum 20 letters long!',
     },
     imglink: {
-      required: 'imglink is required!',
+      required: 'Imglink is required!',
+      regexValidator: 'Not valid image link!',
     },
     description: {
-      required: 'description is required!',
+      required: 'Description is required!',
+      minlength: 'Description minimum 10 letters long!',
+      maxlength: 'Description maximum 150 letters long!',
     },
     minpeople: {
       required: 'minpeople is required!',
+      minNumValueValidator:'Minimum is 3 people!'
     },
     maxpeople: {
       required: 'maxpeople is required!',
@@ -87,7 +101,7 @@ export class OfferValidationService {
     },
 
     peopleGroup: {
-      todovalidator: "Max people >= minpeople",
+      pMaxGreatGroupValidator: 'Must Maxpeople >  minpeople!',
     },
   };
 

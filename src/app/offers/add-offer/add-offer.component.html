@@ -39,7 +39,7 @@
                 <div class="input-cont">
                     <label>Image: </label>
                     <input class="inpfield" class="inpfield" [ngClass]="{ 'inp-error': getErrIn('imglink') }"
-                        formControlName="imglink" />
+                    placeholder="https://....jpg /.png /.gif"   formControlName="imglink" />
 
                     <div class="validation-message">
                         <p *ngIf="getErrIn('imglink')">{{getErrIn('imglink')}}</p>
@@ -51,7 +51,7 @@
                 <div class="input-cont">
                     <label>Description:</label>
                     <textarea class="inpfield" class="inpfield" [ngClass]="{ 'inp-error': getErrIn('description') }"
-                        formControlName="description"></textarea>
+                    placeholder=" . . . between 10 and 150 characters"   formControlName="description"></textarea>
 
                     <div class="validation-message">
                         <p *ngIf="getErrIn('description')">{{getErrIn('description')}}</p>
@@ -62,12 +62,13 @@
 
                 <!-- formGroupName="peopleGroup" -->
                 <ng-container formGroupName="peopleGroup">
-                    
+
                     <!-- People min -->
                     <div class="input-cont">
-                        <label>min count people: <input type="number" class="inpfield people"
-                                [ngClass]="{ 'inp-error': getErrIn('minpeople') }"
-                                formControlName="minpeople" /></label>
+                        <label>min count people:
+                            <input type="number" class="inpfield people"
+                                [ngClass]="{ 'inp-error': getErrIn('minpeople') }"   formControlName="minpeople" />
+                        </label>
 
                         <div class="validation-message">
                             <p *ngIf="getErrIn('minpeople')">{{getErrIn('minpeople')}}</p>
@@ -78,11 +79,14 @@
                     <!-- People max -->
                     <div class="input-cont">
                         <label>max count people: <input type="number" class="inpfield people"
-                                [ngClass]="{ 'inp-error': getErrIn('maxpeople') }"
+                                [ngClass]="{ 'inp-error': getErrIn('maxpeople')|| getErrIn('peopleGroup') }"
                                 formControlName="maxpeople" /></label>
 
                         <div class="validation-message">
                             <p *ngIf="getErrIn('maxpeople')">{{getErrIn('maxpeople')}}</p>
+                        </div>
+                        <div class="validation-message">
+                            <p *ngIf="getErrIn('peopleGroup')">{{getErrIn('peopleGroup')}}</p>
                         </div>
                     </div>
 

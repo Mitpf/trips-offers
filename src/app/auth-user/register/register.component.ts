@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { FormBuilder, Validators } from '@angular/forms';
-import { emailValidator } from '../utils/email-validator';
+import { emailValidator } from '../utils-validation/email-validator';
 import { EMAIL_DOMAINS } from '../constants/email-domains';
-import { matchPassValidator } from '../utils/password-matcher';
-import { GlobalValidationService } from '../../globals/global-services/global-validation.service';
+import { matchPassValidator } from '../utils-validation/password-matcher';
 import {
   ErrorDefinition,
   ValidationError,
@@ -21,7 +20,6 @@ export class RegisterComponent  {
   constructor(
     private authService: AuthService,
     private fb: FormBuilder,
-    //private glValidService: GlobalValidationService,
     private formVService: FormValidationService
   ) {}
 

@@ -27,7 +27,7 @@ export class FormValidationService {
         Object.keys(control.errors).forEach((errorKey) => {
           validErrMessages.push({
             name: groupName,
-            message: defErrMessages[groupName]?.[errorKey] || 'no Validation error message!',
+            message: defErrMessages[groupName]?.[errorKey] || 'validation message undefined!',
           });
         });
       }
@@ -48,7 +48,7 @@ export class FormValidationService {
           Object.keys(errors).forEach((errorKey) => {
             validErrMessages.push({
               name: groupName,
-              message: defErrMessages[groupName]?.[errorKey] || 'no Validation error message!',
+              message: defErrMessages[groupName]?.[errorKey] || 'validation message undefined!',
             });
           });
         }

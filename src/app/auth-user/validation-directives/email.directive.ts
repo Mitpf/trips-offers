@@ -5,7 +5,7 @@ import {
   ValidationErrors,
   Validator,
 } from '@angular/forms';
-import { emailValidator } from '../utils/email-validator';
+import { emailValidator } from '../utils-validation/email-validator';
 
 @Directive({
   selector: '[appEmail]',
