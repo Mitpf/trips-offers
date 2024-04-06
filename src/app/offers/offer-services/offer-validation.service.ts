@@ -44,7 +44,7 @@ export class OfferValidationService {
         [
           Validators.required,
           Validators.minLength(10),
-          Validators.maxLength(150),
+          Validators.maxLength(2000),
         ],
       ],
       minpeople: [0],
@@ -62,6 +62,7 @@ export class OfferValidationService {
       ),
       price: [0, [Validators.required]],
       date: ['', [Validators.required]],
+      durationDays: [2, [Validators.required,Validators.required,minNumValueValidator(2)]],
     });
   }
 
@@ -84,7 +85,7 @@ export class OfferValidationService {
     description: {
       required: 'Description is required!',
       minlength: 'Description minimum 10 letters long!',
-      maxlength: 'Description maximum 150 letters long!',
+      maxlength: 'Description maximum 2000 letters long!',
     },
     minpeople: {
       required: 'minpeople is required!',
@@ -98,6 +99,10 @@ export class OfferValidationService {
     },
     date: {
       required: 'Date is required!',
+    },
+    durationDays: {
+      required: 'Duration is required!',
+      minNumValueValidator:'minimum is 2 days !'
     },
 
     peopleGroup: {

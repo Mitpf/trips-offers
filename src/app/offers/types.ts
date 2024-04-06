@@ -7,6 +7,7 @@ export interface InputDataOffer {
     minpeople: number;
     name: string;
     price: number;
+    durationDays:number,
     owner?:{};
     usersLikes?:{};
   }

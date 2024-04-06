@@ -39,7 +39,7 @@
                 <div class="input-cont">
                     <label>Image: </label>
                     <input class="inpfield" class="inpfield" [ngClass]="{ 'inp-error': getErrIn('imglink') }"
-                    placeholder="https://....jpg /.png /.gif"   formControlName="imglink" />
+                        placeholder="https://....jpg /.png /.gif" formControlName="imglink" />
 
                     <div class="validation-message">
                         <p *ngIf="getErrIn('imglink')">{{getErrIn('imglink')}}</p>
@@ -51,10 +51,14 @@
                 <div class="input-cont">
                     <label>Description:</label>
                     <textarea class="inpfield" class="inpfield" [ngClass]="{ 'inp-error': getErrIn('description') }"
-                    placeholder=" . . . between 10 and 150 characters"   formControlName="description"></textarea>
+                        placeholder=" . . . between 10 and 150 characters" formControlName="description"></textarea>
 
                     <div class="validation-message">
-                        <p *ngIf="getErrIn('description')">{{getErrIn('description')}}</p>
+                        <p *ngIf="getErrIn('description') && descriptionText.length<10"> {{getErrIn('description')}}</p>
+                        <div *ngIf="getErrIn('description') && descriptionText.length>10 ">
+                            <p>Text is {{descriptionText.length}} characters long. </p>
+                            <p> {{getErrIn('description')}}</p>
+                        </div>
                     </div>
 
                 </div>
@@ -67,7 +71,7 @@
                     <div class="input-cont">
                         <label>min count people:
                             <input type="number" class="inpfield people"
-                                [ngClass]="{ 'inp-error': getErrIn('minpeople') }"   formControlName="minpeople" />
+                                [ngClass]="{ 'inp-error': getErrIn('minpeople') }" formControlName="minpeople" />
                         </label>
 
                         <div class="validation-message">
@@ -116,8 +120,19 @@
 
                 </div>
 
+                <!-- Duration Days-->
+                <div class="input-cont"> <br>
+                    <label>Duration: <input  class="inpfield people" [ngClass]="{ 'inp-error': getErrIn('durationDays') }" type="number"
+                        formControlName="durationDays" /> <span> Days</span> </label>
+                
+                        <div class="validation-message">
+                            <p *ngIf="getErrIn('durationDays')">{{getErrIn('durationDays')}}</p>
+                        </div>
+                </div>
+
             </div>
 
+            <!-- BUTTON submit -->
             <button class="a-button">Add Offer</button>
 
 

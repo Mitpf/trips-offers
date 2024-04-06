@@ -8,14 +8,3 @@ export interface UserB4app {
     username: string;
   }
 
-  export interface Offer{
-    name: string,
-    destination: string,
-    imglink: string,
-    description: string,
-    minpeople: number,
-    maxpeople: number,
-    price: number,
-    date: string,
-    objectId:string
-  }
