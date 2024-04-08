@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { LoggedUserModule } from './logged-user/logged-user.module';
 import { OffersModule } from './offers/offers.module';
 import { ErrorMessagesModule } from './error-messages/error-messages.module';
+import { appInterceptorProvider } from './app.interceptor';
 
 
 @NgModule({
@@ -25,7 +26,7 @@ import { ErrorMessagesModule } from './error-messages/error-messages.module';
     ErrorMessagesModule,
     AppRoutingModule,
   ],
-  providers: [],
+  providers: [appInterceptorProvider],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

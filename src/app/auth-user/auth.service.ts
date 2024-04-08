@@ -24,7 +24,7 @@ export class AuthService {
 
     const regData = { email, username, password };
 
-    this.apiService.post('/users', regData).subscribe((userData) => {
+    this.apiService.post('/api/users', regData).subscribe((userData) => {
       //UtilService.setUserData(userData);
       this.login(email,password)
       this.router.navigateByUrl('/home');
@@ -38,7 +38,7 @@ export class AuthService {
 
   // username can be email
   login(email: string, password: string) {
-    this.apiService.post('/login', { email, password }).subscribe(
+    this.apiService.post('/api/login', { email, password }).subscribe(
       (userData) => {
         UtilService.setUserData(userData as UserB4app);
         this.router.navigateByUrl('/home');
@@ -55,7 +55,7 @@ export class AuthService {
   }
 
   logout() {
-    this.apiService.post('/logout').subscribe(
+    this.apiService.post('/api/logout').subscribe(
       (data) => {
         console.log('Logout successful:', data);
         // Additional logout logic (redirect, clear session, etc.)
@@ -70,6 +70,6 @@ export class AuthService {
   }
 
   getUserServerInfo() {
-    this.apiService.get('/users/me').subscribe((data) => console.log(data));
+    this.apiService.get('/api/users/me').subscribe((data) => console.log(data));
   }
 }

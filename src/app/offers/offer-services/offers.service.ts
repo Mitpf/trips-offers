@@ -4,7 +4,6 @@ import { UtilService } from '../../app-services-utils/util.service';
 import { InputDataOffer } from '.././types';
 import { Router } from '@angular/router';
 
-
 @Injectable({
   providedIn: 'root',
 })
@@ -24,21 +23,20 @@ export class OffersService {
 
     const dataOffer = { ...data, date: dateObj, owner };
 
-    this.apiService.post('/classes/offers', dataOffer).subscribe(
-      (data) => {
+    this.apiService.post('/api/classes/offers', dataOffer).subscribe({
+      next: (data) => {
         this.router.navigateByUrl('/offers-catalog');
       },
-
-      (error) => {
+      error: (error) => {
         console.error('Add new offer failed:', error);
         alert(
-          'Add new offer failed:' +
-            '\n' +
-            error.error.error +
-            '\n' +
-            error.message
+          'Add new offer failed:' + '\n' + error.error + '\n' + error.message
         );
-      }
-    );
+      },
+    });
   }
+
+
+
+  /* --- */
 }
