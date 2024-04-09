@@ -9,8 +9,9 @@ import { AuthUserModule } from './auth-user/auth-user.module';
 import { HomeComponent } from './home/home.component';
 import { LoggedUserModule } from './logged-user/logged-user.module';
 import { OffersModule } from './offers/offers.module';
-import { ErrorMessagesModule } from './error-messages/error-messages.module';
+
 import { appInterceptorProvider } from './app.interceptor';
+import { ErrorMessagesModuleModule } from './error-messages-module/error-messages-module.module';
 
 
 @NgModule({
@@ -23,8 +24,8 @@ import { appInterceptorProvider } from './app.interceptor';
     AuthUserModule,
     LoggedUserModule,
     OffersModule,
-    ErrorMessagesModule,
     AppRoutingModule,
+    ErrorMessagesModuleModule
   ],
   providers: [appInterceptorProvider],
   bootstrap: [AppComponent],

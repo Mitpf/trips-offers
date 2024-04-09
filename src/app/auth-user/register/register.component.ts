@@ -11,22 +11,27 @@ import {
 import { FormValidationService } from '../../globals/global-services/form-validation.service';
 import { EMAIL_PROVIDERS } from '../constants/email-providers';
 
+interface registerUserData {
+  email: string;
+  username: string;
+  password: string;
+}
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
 })
-export class RegisterComponent  {
+export class RegisterComponent {
   constructor(
     private authService: AuthService,
     private fb: FormBuilder,
     private formVService: FormValidationService
   ) {}
 
- 
-   //#-----VALIDATION------- 
+  //#-----VALIDATION-------
   //$_______________________
- 
+
   /* Setting validators to controls */
   form = this.fb.group({
     username: ['', [Validators.required, Validators.minLength(3)]],
@@ -73,12 +78,10 @@ export class RegisterComponent  {
   getErrMessage(): ValidationError[] {
     return this.formVService.updateErrors(this.form, this.defErrMessages);
   }
- 
 
-  hasErr(name: string) {  
+  hasErr(name: string) {
     return this.getErrMessage().some((err) => err.name == name);
   }
-
 
   isTouched(nameControl: string) {
     return !!this.form.get(nameControl)?.touched;
@@ -97,17 +100,11 @@ export class RegisterComponent  {
       return;
     }
 
-    const { email, username } = this.form.value;
-    const password = this.form.value.pswGroup?.password;
-
-    if (
-      typeof email == 'string' &&
-      typeof username == 'string' &&
-      typeof password == 'string'
-    ) {
-      this.authService.register(email, username, password);
-    }
+    const { email, username,pswGroup:{password, repass}={} } = this.form.value;
+    //const password = this.form.value.pswGroup?.password;
+    
+this.authService.register(email! , username!, password!);
+    
   }
-
   /*  ------ */
 }

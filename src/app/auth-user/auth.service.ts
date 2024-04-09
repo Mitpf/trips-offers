@@ -25,7 +25,7 @@ export class AuthService {
     const regData = { email, username, password };
 
     this.apiService.post('/api/users', regData).subscribe((userData) => {
-      //UtilService.setUserData(userData);
+    
       this.login(email,password)
       this.router.navigateByUrl('/home');
     },
@@ -40,12 +40,7 @@ export class AuthService {
   login(email: string, password: string) {
     this.apiService.post('/api/login', { email, password }).subscribe(
       (userData) => {
-        UtilService.setUserData(userData as UserB4app);
         this.router.navigateByUrl('/home');
-      },
-      (error) => {
-        console.error('Login failed:', error);
-        alert('Login failed:'+'\n'+error.error.error + '\n' + error.message);
       }
     );
   }

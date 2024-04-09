@@ -4,7 +4,7 @@ import { LoginComponent } from './auth-user/login/login.component';
 import { RegisterComponent } from './auth-user/register/register.component';
 import { HomeComponent } from './home/home.component';
 import { FavoritesComponent } from './logged-user/favorites/favorites.component';
-import { Page404Component } from './error-messages/page-404/page-404.component';
+import { Page404Component } from './page-404/page-404.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', component: HomeComponent },
