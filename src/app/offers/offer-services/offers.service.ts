@@ -27,7 +27,10 @@ export class OffersService {
   }
 
   getAllOffers(){
-    return this.apiService.post('/api/classes/offers');
+    return this.apiService.get('/api/classes/offers');
+  }
+  getOneOffer(offerId:string){
+    return this.apiService.get(`/api/classes/offers/${offerId}`);
   }
 
 

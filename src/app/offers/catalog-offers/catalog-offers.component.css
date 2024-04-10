@@ -1,10 +1,12 @@
-.offers-cont {
+.catalog-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     padding: 1em 2em;
     gap: 1em;
-    height: 300px;/* ! todo  */
+    height: 300px;
+    position:relative;
+    /* ! todo  */
 }
 
 .offer-card {
@@ -14,4 +16,61 @@
     height: 270px;
     border-radius: .5em;
     background: hsl(0, 0%, 100%, .4);
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    cursor:pointer;
 }
+
+.img-container {
+    border: solid 1px red;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 110%;
+    height: 110%;
+    overflow: hidden;
+}
+
+/* //# IMG */
+.img-container img {
+    height: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+}
+
+.aboveImg {
+    position: relative;
+    z-index: 2;
+    background-color: rgb(255, 255, 255, .7);
+    width: 100%;
+    padding: .4em;
+}
+
+.head {
+    font-size: 1.2em;
+    font-weight: 800;
+    color: rgb(44, 41, 41);
+}
+
+.foot {
+    font-size: .97em;
+    color: black;
+}
+
+.aboveImg a {
+    text-decoration: none;
+    color: rgb(26, 255, 0);
+    font-weight: 500;
+    cursor:alias;
+    background: black;
+    padding:.1em;
+    border-radius: .25em;
+}
+

@@ -27,6 +27,7 @@ app-header {
   text-align: center;
 
   padding-bottom: 1vw;
+  z-index: 27;
 }
 
 main {
