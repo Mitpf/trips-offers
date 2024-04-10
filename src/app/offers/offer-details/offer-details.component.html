@@ -29,9 +29,15 @@
         </div>
 
         <div class="end">
-            <a *ngIf="offer.owner.objectId==loggedUserID" routerLink="/offer/{{offer.objectId}}/edit">edit</a>
+            <a class="back-button" routerLink="/offers-catalog">back</a>
+<a class="item-stretch"></a>
+            <a *ngIf="isOwner" routerLink="/offer/{{offer.objectId}}/delete">delete</a>
+
+            <a *ngIf="isOwner" routerLink="/offer/{{offer.objectId}}/edit">edit</a>
+
+
         </div>
-        
+
         <div class="space"></div>
     </div>
 

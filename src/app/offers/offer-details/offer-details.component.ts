@@ -18,6 +18,7 @@ export class OfferDetailsComponent implements OnInit {
 
   offer = {} as OfferDB;
   loggedUserID: string = '';
+  isOwner: boolean = false;
 
   ngOnInit(): void {
     this.loggedUserID = UtilService.getUserData()?.userId;
@@ -27,7 +28,9 @@ export class OfferDetailsComponent implements OnInit {
 
       this.offerService.getOneOffer(offerId).subscribe((offerData: any) => {
         this.offer = offerData;
+        this.isOwner=UtilService.getUserData()?.userId==offerData.owner.objectId;
       });
     });
+    
   }
 }

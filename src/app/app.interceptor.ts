@@ -30,6 +30,7 @@ class AppInterceptor implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
+    this.errService.setError([]);
     if (req.url.startsWith(this.hostAPI)) {
       const sessionToken = UtilService.getUserData()?.sessionToken || '';
       const isBodyData = !!req.body;

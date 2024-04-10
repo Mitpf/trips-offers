@@ -3,10 +3,12 @@
 
     <div class="form-container">
 
-        <h4>Add your Offer:</h4>
+        
+        <h4 *ngIf="isEditMode">Edit your Offer:</h4>
+        <h4 *ngIf="!isEditMode">Add your Offer:</h4>
 
         <!-- FORM OFFER -->
-        <form class="add-offer-form" [formGroup]="form" (ngSubmit)="addOffer()">
+        <form class="add-offer-form" [formGroup]="form" (ngSubmit)="handleSubmit()">
 
             <div class="inp-form">
 
@@ -14,7 +16,7 @@
                 <div class="input-cont">
 
                     <label>Name: </label>
-                    <input class="inpfield" [ngClass]="{ 'inp-error': getErrIn('name') }" formControlName="name" />
+                    <input class="inpfield" [ngClass]="{ 'inp-error': getErrIn('name') }"  formControlName="name" />
 
                     <div class="validation-message">
                         <p *ngIf="getErrIn('name')">{{getErrIn('name')}}</p>
@@ -133,8 +135,10 @@
             </div>
 
             <!-- BUTTON submit -->
-            <button class="a-button">Add Offer</button>
-
+           
+            
+           <button class="a-button" *ngIf="!isEditMode">Add Offer </button> 
+           <button class="a-button" *ngIf="isEditMode">Save changes </button> 
 
         </form>
 

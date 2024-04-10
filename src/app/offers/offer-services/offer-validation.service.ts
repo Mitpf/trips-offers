@@ -8,6 +8,7 @@ import { FormValidationService } from '../../globals/global-services/form-valida
 import { regexValidator } from '../../globals/form-validators/regex-form-validator';
 import { minNumValueValidator } from '../../globals/form-validators/minvalue-form-validator';
 import{pMaxGreatGroupValidator} from '../../offers/validators/peopleGroup-validator'
+import { InputDataOffer } from '../types';
 
 @Injectable({
   providedIn: 'root',
@@ -20,10 +21,10 @@ export class OfferValidationService {
 
   imgLinkRegex: string = '^https?://.*.(jpg|gif|png)$';
 
-  formBuildValidators() {
+  formBuildValidators(initInp:InputDataOffer) {
     return this.fb.group({
       name: [
-        '',
+        initInp.name,
         [
           Validators.required,
           Validators.minLength(3),
@@ -31,16 +32,16 @@ export class OfferValidationService {
         ],
       ],
       destination: [
-        '',
+        initInp.destination,
         [
           Validators.required,
           Validators.minLength(3),
           Validators.maxLength(20),
         ],
       ],
-      imglink: ['', [Validators.required, regexValidator(this.imgLinkRegex)]],
+      imglink: [initInp.imglink, [Validators.required, regexValidator(this.imgLinkRegex)]],
       description: [
-        '',
+        initInp.description,
         [
           Validators.required,
           Validators.minLength(10),
@@ -51,8 +52,8 @@ export class OfferValidationService {
       maxpeople: [0],
       peopleGroup: this.fb.group(
         {
-          minpeople: [3, [Validators.required,minNumValueValidator(3)]],
-          maxpeople: [4, [Validators.required]],
+          minpeople: [initInp.minpeople, [Validators.required,minNumValueValidator(3)]],
+          maxpeople: [initInp.maxpeople, [Validators.required]],
         },
         {
           validators: [
@@ -60,9 +61,9 @@ export class OfferValidationService {
           ],
         }
       ),
-      price: [0, [Validators.required]],
-      date: ['', [Validators.required]],
-      durationDays: [2, [Validators.required,Validators.required,minNumValueValidator(2)]],
+      price: [initInp.price, [Validators.required,minNumValueValidator(100)]],
+      date: [initInp.date, [Validators.required]],
+      durationDays: [initInp.durationDays, [Validators.required,Validators.required,minNumValueValidator(2)]],
     });
   }
 
@@ -96,6 +97,7 @@ export class OfferValidationService {
     },
     price: {
       required: 'Price is required!',
+      minNumValueValidator:'Minimum price is 100$!'
     },
     date: {
       required: 'Date is required!',

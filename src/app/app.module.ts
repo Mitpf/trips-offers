@@ -12,6 +12,7 @@ import { OffersModule } from './offers/offers.module';
 
 import { appInterceptorProvider } from './app.interceptor';
 import { ErrorMessagesModuleModule } from './error-messages-module/error-messages-module.module';
+import { GlobalLoaderComponent } from './globals/global-loader/global-loader.component';
 
 
 @NgModule({

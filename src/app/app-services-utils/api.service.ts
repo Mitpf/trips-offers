@@ -15,4 +15,13 @@ export class ApiService {
   post(url: string, data?: Object): Observable<Object> {
     return this.http.post<Object>(url, data);
   }
+
+  put(url: string, data?: Object): Observable<Object> {
+    return this.http.put<Object>(url, data);
+  }
+  delete(url: string, data?: Object): Observable<Object> {
+    return this.http.delete<Object>(url, data);
+  }
+
+
 }

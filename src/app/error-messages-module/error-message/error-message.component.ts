@@ -71,8 +71,9 @@ export class ErrorMessageComponent implements OnInit, OnDestroy {
     console.log('Error Message Component destroyed');
     if (this.errorSubscription) {
       this.errorSubscription.unsubscribe();
+      
     }
-
+    
     this.errMessages = [];
   }
 }

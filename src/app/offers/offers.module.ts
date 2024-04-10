@@ -5,6 +5,8 @@ import { CatalogOffersComponent } from './catalog-offers/catalog-offers.componen
 import { OfferDetailsComponent } from './offer-details/offer-details.component';
 import { OfferRoutingModule } from './offers-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { EditOfferComponent } from './edit-offer/edit-offer.component';
+
 
 
 @NgModule({
@@ -12,6 +14,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     AddOfferComponent,
     CatalogOffersComponent,
     OfferDetailsComponent,
+    EditOfferComponent,
   ],
   imports: [CommonModule, OfferRoutingModule, ReactiveFormsModule],
   exports: [ReactiveFormsModule],
