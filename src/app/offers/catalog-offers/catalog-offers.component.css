@@ -5,7 +5,8 @@
     padding: 1em 2em;
     gap: 1em;
     height: 300px;
-    position:relative;
+    position: relative;
+
     /* ! todo  */
 }
 
@@ -21,7 +22,7 @@
     display: flex;
     justify-content: space-between;
     flex-direction: column;
-    cursor:pointer;
+    cursor: pointer;
 }
 
 .img-container {
@@ -68,9 +69,9 @@
     text-decoration: none;
     color: rgb(26, 255, 0);
     font-weight: 500;
-    cursor:alias;
+    cursor: alias;
     background: black;
-    padding:.1em;
+    padding: .1em;
     border-radius: .25em;
+    float: right;
 }
-

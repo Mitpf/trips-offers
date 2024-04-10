@@ -1,1 +1,45 @@
-<p>offer-details works!</p>
+<div class="details-container">
+
+
+    <div class="offer-card">
+
+        <div class="header">
+            <p>{{offer.name }} </p>
+
+        </div>
+
+        <div class="img-container">
+            <img src="{{offer.imglink}}" alt="">
+        </div>
+
+        <div class="card-middle">
+            <div>
+                <p> Start: {{offer.date.iso | date: 'dd-MM-yyyy' }}</p>
+                <p>Price: {{offer.price}}$ </p>
+            </div>
+
+            <div class="fright">
+                <p> Min. people {{offer.minpeople}} / Max. people {{offer.maxpeople}} </p>
+                <p>Duration: {{offer.durationDays}} Days</p>
+            </div>
+        </div>
+
+        <div class="description">
+            <p>{{offer.description}}</p>
+        </div>
+
+        <div class="end">
+            <a *ngIf="offer.owner.objectId==loggedUserID" routerLink="/offer/{{offer.objectId}}/edit">edit</a>
+        </div>
+        
+        <div class="space"></div>
+    </div>
+
+
+</div>
+
+
+<!-- 
+
+    
+ -->

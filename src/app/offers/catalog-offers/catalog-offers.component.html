@@ -1,24 +1,23 @@
-<div class="catalog-container">
 
-    <div class="offer-card" *ngFor="let offer of allOffers" routerLink="/offer/{{offer.objectId}}/details">
-       
-        <div class="aboveImg head">
-            <p>{{offer.name }} </p>
-        </div>
-        <div class="aboveImg foot">
-            <span>When: {{offer.date.iso | date: 'dd-MM-yyyy' }}</span>
-            <span> / {{offer.durationDays }} Days</span>
-            <div><span>Price: {{offer.price }}$</span> <a *ngIf="offer.owner.objectId==loggedUserID" style="float:right" routerLink="/offer/{{offer.objectId}}/edit">edit</a></div>
-            
-        </div>
-        <div class="img-container">
-            <img src="{{offer.imglink }}" alt="">
+    <div class="catalog-container">
+
+        <div class="offer-card" *ngFor="let offer of allOffers" routerLink="/offer/{{offer.objectId}}/details">
+
+            <div class="aboveImg head">
+                <p>{{offer.name }} </p>
+            </div>
+            <div class="aboveImg foot">
+                <span>When: {{offer.date.iso | date: 'dd-MM-yyyy' }}</span>
+                <span> / {{offer.durationDays }} Days</span>
+                <div><span>Price: {{offer.price }}$</span> <a *ngIf="offer.owner.objectId==loggedUserID"
+                         routerLink="/offer/{{offer.objectId}}/edit">edit</a></div>
+
+            </div>
+            <div class="img-container">
+                <img src="{{offer.imglink }}" alt="">
+            </div>
+
         </div>
 
     </div>
 
-   
-
-
-
-</div>
