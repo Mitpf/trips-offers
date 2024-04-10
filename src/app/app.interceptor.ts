@@ -17,10 +17,11 @@ import {
 } from 'src/environments/environment.development';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { ErrorService } from './error-messages-module/error.service';
 
 @Injectable()
 class AppInterceptor implements HttpInterceptor {
-  constructor(private router: Router, private location: Location) {}
+  constructor(private router: Router, private location: Location, private errService: ErrorService) {}
 
   hostAPI = '/api';
   private headers = apiHeaders;
@@ -67,15 +68,12 @@ class AppInterceptor implements HttpInterceptor {
       }),
 
       catchError((err) => {
-        console.log(err);
-        if ((err.status = 404)) {
-          alert(
-            `${this.location.path().split('/').pop()} failed!\n${
-              err.error.error
-            }`
-          );
-          //alert(`Error: code-${err.error.code}, ${err.error.error}, general message: ${err.message}, status: ${err.status}  `);
-          return EMPTY;
+        
+        if (err.status === 401) {
+          this.router.navigate(['/login']);
+        } else {
+          this.errService.setError(err);
+          //this.router.navigate(['/error']);
         }
 
         return [err];
@@ -106,4 +104,19 @@ statusText: "OK"
 url: "https://parseapi.back4app.com/login"
 [[Prototype]]: HttpResponseBase
 
+*/
+
+
+
+/* 
+
+if ((err.status = 404)) {
+          alert(
+            `${this.location.path().split('/').pop()} failed!\n${
+              err.error.error
+            }`
+          );
+          //alert(`Error: code-${err.error.code}, ${err.error.error}, general message: ${err.message}, status: ${err.status}  `);
+          return EMPTY;
+        }
 */

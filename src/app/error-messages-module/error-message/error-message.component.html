@@ -1,0 +1,6 @@
+<div class="err-frame" *ngIf="errMessages.length>0">
+    <button (click)="close()">X</button>
+    <div class="err-container" *ngFor="let message of errMessages">
+        <p class="err">{{message}}</p>
+    </div>
+</div>

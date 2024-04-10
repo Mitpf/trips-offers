@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { OffersService } from '../offer-services/offers.service';
 import { InputDataOffer } from '../types';
 import { OfferValidationService } from '../offer-services/offer-validation.service';
+import { Router } from '@angular/router';
+import { ErrorService } from 'src/app/error-messages-module/error.service';
 
 @Component({
   selector: 'app-add-offer',
@@ -9,9 +11,12 @@ import { OfferValidationService } from '../offer-services/offer-validation.servi
   styleUrls: ['./add-offer.component.css'],
 })
 export class AddOfferComponent implements OnInit {
+  //
   constructor(
     private offerService: OffersService,
-    private ofValidService: OfferValidationService
+    private ofValidService: OfferValidationService,
+    private router: Router,
+    private errService: ErrorService
   ) {}
 
   form = this.ofValidService.formBuildValidators();
@@ -40,17 +45,19 @@ export class AddOfferComponent implements OnInit {
   /* Post data to DB */
   addOffer() {
     if (this.form.invalid) {
-      alert(
+      const message =
         this.getErrMessages()
           .map((err) => err.message)
-          .join(' ') || 'Form not filled!'
-      );
+          .join(' ') || 'Form not filled!';
+      this.errService.setError({ message });
       return;
     }
     const { peopleGroup, ...rest } = this.form.value;
 
     const inputData = { ...rest, ...peopleGroup };
 
-    this.offerService.addOffer(inputData as InputDataOffer);
+    this.offerService
+      .addOffer(inputData as InputDataOffer)
+      .subscribe(() => this.router.navigate(['offers-catalog']));
   }
 }

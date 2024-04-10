@@ -23,17 +23,11 @@ export class OffersService {
 
     const dataOffer = { ...data, date: dateObj, owner };
 
-    this.apiService.post('/api/classes/offers', dataOffer).subscribe({
-      next: (data) => {
-        this.router.navigateByUrl('/offers-catalog');
-      },
-      error: (error) => {
-        console.error('Add new offer failed:', error);
-        alert(
-          'Add new offer failed:' + '\n' + error.error + '\n' + error.message
-        );
-      },
-    });
+    return this.apiService.post('/api/classes/offers', dataOffer);
+  }
+
+  getAllOffers(){
+    return this.apiService.post('/api/classes/offers');
   }
 
 
