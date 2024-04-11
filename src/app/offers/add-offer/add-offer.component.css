@@ -149,6 +149,12 @@ textarea {
     margin-top: -.15em;
 }
 
+.validation-message p {
+    
+    color: #00fffb;
+    
+}
+
 .validation-message:empty {
     padding: 0;
     background-color: rgba(255, 255, 255, 0);

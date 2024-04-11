@@ -45,4 +45,16 @@ export class UtilService {
     return data;
   }
 
+
+
+  static encodeObject(object:{}) {
+    return encodeURIComponent(JSON.stringify(object));
+  }
+  
+/* UtilService.filterRelation('owner','_User',userId)
+     */
+  static filterRelation(field:string, collection:string, objectId:string) {
+    return { [field]: this.createPointer(collection, objectId) };
+  }
+
 }

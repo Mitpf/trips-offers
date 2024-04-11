@@ -119,6 +119,6 @@ nav ul ul {
 
 .profile ul li {
   padding: .1em;
-  background: rgb(128, 128, 128,.5);
+  background: rgba(37, 36, 36, 0.675);
   border-radius: .2em;
 }
