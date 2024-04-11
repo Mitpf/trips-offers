@@ -19,6 +19,13 @@ export class UtilService {
     }
     return null;
   }
+  static isUserLogged() {
+    const userDataString = localStorage.getItem('userData');
+    if (userDataString !== null) {
+      return true;
+    }
+    return false;
+  }
 
   static clearUserData() {
     localStorage.removeItem('userData');

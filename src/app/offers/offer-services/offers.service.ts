@@ -33,6 +33,7 @@ export class OffersService {
   getOneOffer(offerId:string){
     return this.apiService.get(`/api/classes/offers/${offerId}`);
   }
+
   deleteOneOffer(offerId:string){
     return this.apiService.delete(`/api/classes/offers/${offerId}`);
   }
@@ -51,6 +52,7 @@ export class OffersService {
     return this.apiService.put(`/api/classes/offers/${offerId}`, dataOffer);
   }
 
+  
 
 
   /* --- */
