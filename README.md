@@ -172,6 +172,12 @@ Parse.Cloud.beforeSave("offers", (request) => {
 
 > which helps to define error messages in component, not in template.
 
+### Interceptor:
+> In interceptor are implemented global Errors from server and etc. handling/catching, 
+- setting key headers for DB-Back4app api requests
+- set token into DB-requests headers 
+- save tokken from DB-srever by loging/register into local storage
+
 ##
 ##
 
