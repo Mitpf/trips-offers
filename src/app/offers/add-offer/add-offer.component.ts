@@ -145,5 +145,12 @@ export class AddOfferComponent implements OnInit {
     }
   }
 
+  deleteOffer() {
+    this.activeRoute.params.subscribe((params) => {
+      const offerId = params['offerId'];
+      this.offerService.deleteOneOffer(offerId).subscribe(() => {this.router.navigate(['offers-catalog'])});
+    });
+  }
+
   /* end class */
 }

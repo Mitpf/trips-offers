@@ -4,7 +4,6 @@ import { OfferDetailsComponent } from './offer-details/offer-details.component';
 import { CatalogOffersComponent } from './catalog-offers/catalog-offers.component';
 import { AddOfferComponent } from './add-offer/add-offer.component';
 import { Page404Component } from '../page-404/page-404.component';
-import { DeleteOfferComponent } from './delete-offer/delete-offer.component';
 
 
 
@@ -17,8 +16,7 @@ const routes: Routes = [
       {
         path: ':offerId',
         children: [{ path: 'details', component: OfferDetailsComponent },
-        { path: 'edit', component: AddOfferComponent },
-        { path: 'delete', component: DeleteOfferComponent }
+        { path: 'edit', component: AddOfferComponent }
         ],
       },
     ],

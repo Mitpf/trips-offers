@@ -3,7 +3,7 @@
 
     <div class="form-container">
 
-        
+
         <h4 *ngIf="isEditMode">Edit your Offer:</h4>
         <h4 *ngIf="!isEditMode">Add your Offer:</h4>
 
@@ -16,7 +16,7 @@
                 <div class="input-cont">
 
                     <label>Name: </label>
-                    <input class="inpfield" [ngClass]="{ 'inp-error': getErrIn('name') }"  formControlName="name" />
+                    <input class="inpfield" [ngClass]="{ 'inp-error': getErrIn('name') }" formControlName="name" />
 
                     <div class="validation-message">
                         <p *ngIf="getErrIn('name')">{{getErrIn('name')}}</p>
@@ -124,21 +124,49 @@
 
                 <!-- Duration Days-->
                 <div class="input-cont"> <br>
-                    <label>Duration: <input  class="inpfield people" [ngClass]="{ 'inp-error': getErrIn('durationDays') }" type="number"
-                        formControlName="durationDays" /> <span> Days</span> </label>
-                
-                        <div class="validation-message">
-                            <p *ngIf="getErrIn('durationDays')">{{getErrIn('durationDays')}}</p>
-                        </div>
+                    <label>Duration: <input class="inpfield people"
+                            [ngClass]="{ 'inp-error': getErrIn('durationDays') }" type="number"
+                            formControlName="durationDays" /> <span> Days</span> </label>
+
+                    <div class="validation-message">
+                        <p *ngIf="getErrIn('durationDays')">{{getErrIn('durationDays')}}</p>
+                    </div>
                 </div>
 
             </div>
 
             <!-- BUTTON submit -->
-           
-            
-           <button class="a-button" *ngIf="!isEditMode">Add Offer </button> 
-           <button class="a-button" *ngIf="isEditMode">Save changes </button> 
+
+
+            <button class="a-button" *ngIf="!isEditMode">Add Offer </button>
+
+            <div class="btn-cont" *ngIf="isEditMode">
+                <button class="a-button">Save changes </button>
+
+                <ng-container  >
+                    <input class="modal-btn" type="checkbox" id="modal-btn" name="modal-btn" />
+                    <label for="modal-btn">Delete</label>
+                    <div class="modal">
+                        <div class="modal-wrap">
+                            <img src="https://edge.sitecorecloud.io/ironmountain-c8dd68e9/media/project/iron-mountain/iron-mountain/images/services-and-industries/rim/hero-and-background-over-800px/shred-container-options-banner.jpg"
+                                alt="">
+                            <p>You are about to the delete this offer.</p>
+                            <p>Are you sure?</p>
+                            <div class="delete-container">
+                                <a class="a-button modal-btn delete" (click)="deleteOffer()">DELETE</a> 
+                            </div>
+    
+    
+                        </div>
+                    </div>
+                </ng-container>
+
+
+
+            </div>
+
+
+
 
         </form>
 
