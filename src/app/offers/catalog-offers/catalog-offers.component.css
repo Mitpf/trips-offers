@@ -22,7 +22,6 @@
     display: flex;
     justify-content: space-between;
     flex-direction: column;
-    cursor: pointer;
 }
 
 .img-container {
@@ -39,11 +38,13 @@
 /* //# IMG */
 .img-container img {
     height: 100%;
+    width: 100%;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 0;
+    cursor: pointer;
 }
 
 .aboveImg {
@@ -52,6 +53,7 @@
     background-color: rgb(255, 255, 255, .7);
     width: 100%;
     padding: .4em;
+    cursor: pointer;
 }
 
 .head {
@@ -63,15 +65,26 @@
 .foot {
     font-size: .97em;
     color: black;
+    cursor:default;
 }
 
+/* a-button */
 .aboveImg a {
     text-decoration: none;
     color: rgb(26, 255, 0);
     font-weight: 500;
-    cursor: alias;
+    cursor:pointer;
     background: black;
     padding: .1em;
     border-radius: .25em;
     float: right;
+}
+
+.aboveImg a:hover{
+    background: rgb(241, 211, 16);
+    color: rgb(0, 0, 0);
+}
+
+.ng-cont{
+    cursor: pointer;
 }
