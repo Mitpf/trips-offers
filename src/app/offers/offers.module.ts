@@ -5,7 +5,8 @@ import { CatalogOffersComponent } from './catalog-offers/catalog-offers.componen
 import { OfferDetailsComponent } from './offer-details/offer-details.component';
 import { OfferRoutingModule } from './offers-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
-import { EditOfferComponent } from './edit-offer/edit-offer.component';
+import { DeleteOfferComponent } from './delete-offer/delete-offer.component';
+
 
 
 
@@ -14,7 +15,7 @@ import { EditOfferComponent } from './edit-offer/edit-offer.component';
     AddOfferComponent,
     CatalogOffersComponent,
     OfferDetailsComponent,
-    EditOfferComponent,
+    DeleteOfferComponent,
   ],
   imports: [CommonModule, OfferRoutingModule, ReactiveFormsModule],
   exports: [ReactiveFormsModule],

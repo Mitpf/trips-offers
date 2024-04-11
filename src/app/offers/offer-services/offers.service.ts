@@ -33,15 +33,18 @@ export class OffersService {
   getOneOffer(offerId:string){
     return this.apiService.get(`/api/classes/offers/${offerId}`);
   }
+  deleteOneOffer(offerId:string){
+    return this.apiService.delete(`/api/classes/offers/${offerId}`);
+  }
 
   updateOneOffer(offerId:string, data:InputDataOffer){
 
-    //const userId = UtilService.getUserData()?.userId;
+    const userId = UtilService.getUserData()?.userId;
     const isoDate = new Date(data.date).toISOString();
 
     const dateObj = { __type: 'Date', iso: isoDate };
 
-    //const owner = UtilService.createPointer('_User', userId);
+    const owner = UtilService.createPointer('_User', userId);
 
     const dataOffer = { ...data, date: dateObj, /* owner */ };
 

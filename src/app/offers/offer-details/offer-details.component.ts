@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { tap } from 'rxjs';
 import { OfferDB } from '../types';
 import { OffersService } from '../offer-services/offers.service';
@@ -13,7 +13,8 @@ import { UtilService } from 'src/app/app-services-utils/util.service';
 export class OfferDetailsComponent implements OnInit {
   constructor(
     private activeRoute: ActivatedRoute,
-    private offerService: OffersService
+    private offerService: OffersService,
+    private router: Router
   ) {}
 
   offer = {} as OfferDB;
@@ -28,9 +29,15 @@ export class OfferDetailsComponent implements OnInit {
 
       this.offerService.getOneOffer(offerId).subscribe((offerData: any) => {
         this.offer = offerData;
-        this.isOwner=UtilService.getUserData()?.userId==offerData.owner.objectId;
+        this.isOwner =
+          UtilService.getUserData()?.userId == offerData.owner.objectId;
       });
     });
-    
+  }
+
+  deleteOffer(offerId: string) {
+    this.offerService.deleteOneOffer(offerId).subscribe(() => {
+      this.router.navigate(['offers-catalog']);
+    });
   }
 }

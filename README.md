@@ -93,3 +93,41 @@ d9c5fa40-8766-40f1-9548-03efed1069a0
 fYQkmUkCMaRc0Oh7tlNfRQoSxOtt6gtoN65afXE4
 
 ![alt text](image.png)
+
+
+## Back4app sett in cloudCode access only owner can write update delete:
+
+![alt text](image-1.png)
+
+
+```javascript
+
+Parse.Cloud.beforeSave("offers", (request) => {
+
+  const object = request.object;
+  const currentUser = request.user;
+  
+  // 
+  if (!object.isNew()) { 
+    const objectOwner = object.get("owner");
+
+    // 
+    if (currentUser && objectOwner && objectOwner.id !== currentUser.id) {
+      throw new Parse.Error(403, "You are not authorized to modify this record.");
+    }
+  } else {
+    // 
+    if (currentUser) {
+      object.set("owner", currentUser);
+
+      const acl = new Parse.ACL(currentUser);
+      acl.setPublicReadAccess(true);
+      acl.setPublicWriteAccess(false);
+      object.setACL(acl);
+    } else {
+      throw new Parse.Error(403, "You must be signed in to create a record.");
+    }
+  }
+});
+
+```
