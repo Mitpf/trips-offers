@@ -9,15 +9,16 @@ import { OffersService } from 'src/app/offers/offer-services/offers.service';
   styleUrls: ['./profile.component.css'],
 })
 export class ProfileComponent implements OnInit {
-  constructor(private offerService: OffersService, private apiService:ApiService) {}
+  constructor(
+    private offerService: OffersService,
+    private apiService: ApiService
+  ) {}
 
   ngOnInit(): void {
-   
+    console.log('asdf');
 
-      
-      
-      
+    this.offerService
+      .getAllOffersByOneUser('PGm9J4ARoB')
+      .subscribe((data) => console.log(data));
   }
-
-
 }

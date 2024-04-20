@@ -24,6 +24,7 @@ export class isGuestActivate implements CanActivate {
     if (!UtilService.isUserLogged()) {
       return true;
     }
-    return this.router.createUrlTree(['/404']);
+    return this.router.navigate(['/404']);
+    
   }
 }

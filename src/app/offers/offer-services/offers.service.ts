@@ -51,17 +51,14 @@ export class OffersService {
     return this.apiService.put(`/api/classes/offers/${offerId}`, dataOffer);
   }
 
-  getAllOffersByOneUser() {
-    /* const encodedQuery = encodeURIComponent(
+  getAllOffersByOneUser(userId:string) {
+    const encodedQuery = encodeURIComponent(
       `{"owner":{"__type":"Pointer","className":"_User","objectId":"${userId}"}}`
     );
     return this.apiService.get(
-      'https://parseapi.back4app.com/classes/offers?where=' + encodedQuery
-    ); */
-
-    return this.apiService.get(
-      'https://parseapi.back4app.com/classes/offers?where=%7B%22owner%22%3A%7B%22__type%22%3A%22Pointer%22%2C%22className%22%3A%22_User%22%2C%22objectId%22%3A%22PGm9J4ARoB%22%7D%7D'
+      `/api/classes/offers?where=${encodedQuery}` 
     );
+
   }
 
   /* --- */

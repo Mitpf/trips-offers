@@ -13,20 +13,23 @@ const routes: Routes = [
   {
     path: 'offer',
     children: [
-      /*  { path: '', pathMatch: 'full', component: MainComponent }, */
       { path: 'add', component: AddOfferComponent,canActivate:[AuthActivate] },
       {
         path: ':offerId',
         children: [{ path: 'details', component: OfferDetailsComponent },
-        { path: 'edit', component: AddOfferComponent,canActivate:[AuthActivate,isOwner] }
+        { path: 'edit', component: AddOfferComponent,canActivate:[AuthActivate,isOwner] },
+        { path: '**', redirectTo: '/404' },
         ],
       },
+      { path: '**', redirectTo: '/404' },
     ],
   },
 
   { path: 'offers-catalog', component: CatalogOffersComponent },
+  
   { path: '**', redirectTo: '/404' },
 ];
+
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

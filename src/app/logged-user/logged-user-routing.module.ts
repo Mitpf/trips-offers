@@ -6,13 +6,15 @@ import { FavoritesComponent } from './favorites/favorites.component';
 const routes: Routes = [
   {
     path: 'user',
+
     children: [
-      { path: '', pathMatch: 'full', redirectTo: 'profile' },
       {
         path: ':userId',
+
         children: [
           { path: 'favorites', component: FavoritesComponent },
           { path: 'profile', component: ProfileComponent },
+          { path: '**', redirectTo: '/404' },
         ],
       },
     ],

@@ -21,7 +21,11 @@ import { ErrorService } from './error-messages-module/error.service';
 
 @Injectable()
 class AppInterceptor implements HttpInterceptor {
-  constructor(private router: Router, private location: Location, private errService: ErrorService) {}
+  constructor(
+    private router: Router,
+    private location: Location,
+    private errService: ErrorService
+  ) {}
 
   hostAPI = '/api';
   private headers = apiHeaders;
@@ -32,6 +36,8 @@ class AppInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     this.errService.setError([]);
     if (req.url.startsWith(this.hostAPI)) {
+      console.log('INTERCEPTORS WORKS');
+
       const sessionToken = UtilService.getUserData()?.sessionToken || '';
       const isBodyData = !!req.body;
 
@@ -60,16 +66,16 @@ class AppInterceptor implements HttpInterceptor {
     return next.handle(req).pipe(
       tap((event: HttpEvent<any>) => {
         if (event instanceof HttpResponse) {
-
-          if(event.body?.sessionToken){
-           console.log('INT', event.body);
-           UtilService.setUserData(event.body);
+          if (event.body?.sessionToken) {
+            console.log('INT', event.body);
+            UtilService.setUserData(event.body);
           }
         }
       }),
 
       catchError((err) => {
-        
+        console.log('errStatus', err.status);
+
         if (err.status === 401) {
           this.router.navigate(['/login']);
         } else {
@@ -91,8 +97,6 @@ export const appInterceptorProvider: Provider = {
   provide: HTTP_INTERCEPTORS,
 };
 
-
-
 /* 
 HttpErrorResponse {headers: HttpHeaders, status: 404, statusText: 'OK', url: 'https://parseapi.back4app.com/login', ok: false, …}
 error: {code: 101, error: 'Invalid username/password.'}
@@ -106,8 +110,6 @@ url: "https://parseapi.back4app.com/login"
 [[Prototype]]: HttpResponseBase
 
 */
-
-
 
 /* 
 
