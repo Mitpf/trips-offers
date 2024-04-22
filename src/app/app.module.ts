@@ -13,10 +13,10 @@ import { OffersModule } from './offers/offers.module';
 import { appInterceptorProvider } from './app.interceptor';
 import { ErrorMessagesModuleModule } from './error-messages-module/error-messages-module.module';
 import { GlobalLoaderComponent } from './globals/global-loader/global-loader.component';
-
+import { Page404Component } from './page-404/page-404.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent],
+  declarations: [AppComponent, HomeComponent, Page404Component],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -25,8 +25,9 @@ import { GlobalLoaderComponent } from './globals/global-loader/global-loader.com
     AuthUserModule,
     LoggedUserModule,
     OffersModule,
+    ErrorMessagesModuleModule,
+
     AppRoutingModule,
-    ErrorMessagesModuleModule
   ],
   providers: [appInterceptorProvider],
   bootstrap: [AppComponent],

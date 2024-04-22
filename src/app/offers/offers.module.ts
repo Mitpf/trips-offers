@@ -16,7 +16,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     OfferDetailsComponent,
   ],
   imports: [CommonModule, OfferRoutingModule, ReactiveFormsModule],
-  exports: [ReactiveFormsModule],
+  exports: [ReactiveFormsModule,OfferRoutingModule],
   providers:[DatePipe]
 })
 export class OffersModule {}

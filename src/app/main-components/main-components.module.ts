@@ -3,11 +3,11 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { NavigationComponent } from './navigation/navigation.component';
-import { AppRoutingModule } from '../app-routing.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [HeaderComponent, FooterComponent, NavigationComponent],
-  imports: [CommonModule, AppRoutingModule],
+  imports: [CommonModule, RouterModule],
   exports: [HeaderComponent, FooterComponent],
 })
 export class MainComponentsModule {}

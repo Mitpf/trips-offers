@@ -11,25 +11,24 @@ import { isOwner } from '../route-gurads/isOwner.activate';
 
 const routes: Routes = [
   {
-    path: 'offer',
-    children: [
-      { path: 'add', component: AddOfferComponent,canActivate:[AuthActivate] },
-      {
-        path: ':offerId',
-        children: [{ path: 'details', component: OfferDetailsComponent },
-        { path: 'edit', component: AddOfferComponent,canActivate:[AuthActivate,isOwner] },
-        { path: '**', redirectTo: '/404' },
-        ],
-      },
-      { path: '**', redirectTo: '/404' },
-    ],
+    path: 'offer/add',
+    component: AddOfferComponent,
+    canActivate: [AuthActivate],
+  },
+  {
+    path: 'offer/:offerId/details',
+    component: OfferDetailsComponent,
+  },
+  {
+    path: 'offer/:offerId/edit',
+    component: AddOfferComponent,
+    canActivate: [AuthActivate, isOwner],
   },
 
   { path: 'offers-catalog', component: CatalogOffersComponent },
   
-  { path: '**', redirectTo: '/404' },
+ 
 ];
-
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
