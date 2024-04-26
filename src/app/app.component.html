@@ -3,8 +3,16 @@
 
 
 <main>
-    <app-error-message />
+    
+
+     <ng-container *ngIf="errMessages$ | async as errMessages">
+       <app-error-message ></app-error-message> 
+    </ng-container>
+
+        
+    
     <router-outlet />
 </main>
 
 <app-footer />
+

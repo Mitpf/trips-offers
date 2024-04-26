@@ -41,4 +41,7 @@ export class Page404Component implements OnInit {
     animate(); // Start animation
   }
 
+
+ 
+
 }

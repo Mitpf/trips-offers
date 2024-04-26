@@ -1,9 +1,9 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { ApiService } from '../app-services-utils/api.service';
 import { UtilService } from '../app-services-utils/util.service';
 import { Router } from '@angular/router';
 import {UserB4app}from '../globals/types/back4app';
+
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +11,6 @@ import {UserB4app}from '../globals/types/back4app';
 export class AuthService {
   constructor(
     private http: HttpClient,
-    private apiService: ApiService,
     private router: Router
   ) {}
 
@@ -24,7 +23,7 @@ export class AuthService {
 
     const regData = { email, username, password };
 
-    this.apiService.post('/api/users', regData).subscribe((userData) => {
+    this.http.post('/api/users', regData).subscribe((userData) => {
     
       this.login(email,password)
       this.router.navigateByUrl('/home');
@@ -38,7 +37,7 @@ export class AuthService {
 
   // username can be email
   login(email: string, password: string) {
-    this.apiService.post('/api/login', { email, password }).subscribe(
+    this.http.post('/api/login', { email, password }).subscribe(
       (userData) => {
         this.router.navigateByUrl('/home');
       }
@@ -50,7 +49,7 @@ export class AuthService {
   }
 
   logout() {
-    this.apiService.post('/api/logout').subscribe(
+    this.http.post('/api/logout',{}).subscribe(
       (data) => {
         console.log('Logout successful:', data);
         // Additional logout logic (redirect, clear session, etc.)
@@ -65,6 +64,6 @@ export class AuthService {
   }
 
   getUserServerInfo() {
-    this.apiService.get('/api/users/me').subscribe((data) => console.log(data));
+    this.http.get('/api/users/me').subscribe((data) => console.log(data));
   }
 }

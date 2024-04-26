@@ -1,14 +1,19 @@
 import { Injectable } from '@angular/core';
-import { ApiService } from '../../app-services-utils/api.service';
 import { UtilService } from '../../app-services-utils/util.service';
 import { InputDataOffer } from '.././types';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
 })
 export class OffersService {
-  constructor(private apiService: ApiService, private router: Router) {}
+
+  constructor(
+    
+    private router: Router,
+    private http: HttpClient
+  ) {}
 
   /* ---- */
   /* {__type: 'Pointer',className: '_User',objectId: userId,}; */
@@ -23,19 +28,19 @@ export class OffersService {
 
     const dataOffer = { ...data, date: dateObj, owner };
 
-    return this.apiService.post('/api/classes/offers', dataOffer);
+    return this.http.post('/api/classes/offers', dataOffer);
   }
 
   getAllOffers() {
-    return this.apiService.get('/api/classes/offers');
+    return this.http.get('/api/classes/offers');
   }
 
   getOneOffer(offerId: string) {
-    return this.apiService.get(`/api/classes/offers/${offerId}`);
+    return this.http.get(`/api/classes/offers/${offerId}`);
   }
 
   deleteOneOffer(offerId: string) {
-    return this.apiService.delete(`/api/classes/offers/${offerId}`);
+    return this.http.delete(`/api/classes/offers/${offerId}`);
   }
 
   updateOneOffer(offerId: string, data: InputDataOffer) {
@@ -48,17 +53,14 @@ export class OffersService {
 
     const dataOffer = { ...data, date: dateObj /* owner */ };
 
-    return this.apiService.put(`/api/classes/offers/${offerId}`, dataOffer);
+    return this.http.put(`/api/classes/offers/${offerId}`, dataOffer);
   }
 
-  getAllOffersByOneUser(userId:string) {
+  getAllOffersByOneUser(userId: string) {
     const encodedQuery = encodeURIComponent(
       `{"owner":{"__type":"Pointer","className":"_User","objectId":"${userId}"}}`
     );
-    return this.apiService.get(
-      `/api/classes/offers?where=${encodedQuery}` 
-    );
-
+    return this.http.get(`/api/classes/offers?where=${encodedQuery}`);
   }
 
   /* --- */

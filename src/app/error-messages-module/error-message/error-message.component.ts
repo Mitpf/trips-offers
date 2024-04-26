@@ -1,33 +1,6 @@
-/* import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ErrorService } from '../error.service';
-
-@Component({
-  selector: 'app-error-message',
-  templateUrl: './error-message.component.html',
-  styleUrls: ['./error-message.component.css'],
-})
-export class ErrorMessageComponent implements OnInit {
-  constructor(private errorService: ErrorService) {}
-
-  errMessages: string[] = [];
-
-  ngOnInit(): void {
-    this.errorService.apiErrors$.subscribe((err: any) => {
-      if (err) {
-        this.errMessages = [
-          `Error: code-${err.error.code}`,
-          `${err.error.error}`,
-          `general message: ${err.message}`,
-          ` status: ${err.status}`,
-        ];
-      }
-    });
-  }
-} */
-
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ErrorService } from '../error.service';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-error-message',
@@ -37,43 +10,40 @@ import { Subscription } from 'rxjs';
 export class ErrorMessageComponent implements OnInit, OnDestroy {
   constructor(private errorService: ErrorService) {}
 
+  @Input() messages: string[] = [];
   errMessages: string[] = [];
   errorSubscription: Subscription | undefined;
 
   ngOnInit(): void {
-    this.errorSubscription = this.errorService.apiErrors$.subscribe(
-      (err: any) => {
-        if (err) {
+    console.log('ngOninit');
 
-          if(err.error?.code){
-            this.errMessages.push(`Error: code-${err.error?.code}`);
-          }
-          if(err.error?.error){
-            this.errMessages.push(err.error?.error);
-          }
-          if(err.message){
-            this.errMessages.push(`general message: ${err.message}`);
-          }
-          if(err.status){
-            this.errMessages.push(` status: ${err.status}`);
-          }
-
-        }
+    this.errorSubscription = this.errorService.errMessages$.subscribe(
+      (messages: string[]) => {
+        this.errMessages = messages;
+        console.log('ng on init: Error messages:', this.errMessages);
+        //this.messages = messages;
       }
     );
   }
 
-  close(){
-    this.errMessages = [];
+  ngAfterViewInit(): void {
+    console.log('ngAfterViewInit rendered child');
+    console.log('ngAfterViewInit Error messages:', this.errMessages);
+  }
+
+  get errMessages$(): Observable<string[]> {
+    return this.errorService.errMessages$;
+  }
+
+  close() {
+    this.errorService.setError([]);
   }
 
   ngOnDestroy(): void {
-    console.log('Error Message Component destroyed');
+    console.log('on DESTROY works');
+    this.errorService.setError([]);
     if (this.errorSubscription) {
       this.errorSubscription.unsubscribe();
-      
     }
-    
-    this.errMessages = [];
   }
 }

@@ -5,6 +5,7 @@ import { CatalogOffersComponent } from './catalog-offers/catalog-offers.componen
 import { OfferDetailsComponent } from './offer-details/offer-details.component';
 import { OfferRoutingModule } from './offers-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { GlobalsModule } from '../globals/globals.module';
 
 
 
@@ -15,7 +16,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     CatalogOffersComponent,
     OfferDetailsComponent,
   ],
-  imports: [CommonModule, OfferRoutingModule, ReactiveFormsModule],
+  imports: [CommonModule,GlobalsModule, OfferRoutingModule, ReactiveFormsModule],
   exports: [ReactiveFormsModule,OfferRoutingModule],
   providers:[DatePipe]
 })

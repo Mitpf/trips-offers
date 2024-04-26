@@ -4,6 +4,7 @@ import { tap } from 'rxjs';
 import { OfferDB } from '../types';
 import { OffersService } from '../offer-services/offers.service';
 import { UtilService } from 'src/app/app-services-utils/util.service';
+import { ErrorService } from 'src/app/error-messages-module/error.service';
 
 @Component({
   selector: 'app-offer-details',
@@ -14,7 +15,8 @@ export class OfferDetailsComponent implements OnInit {
   constructor(
     private activeRoute: ActivatedRoute,
     private offerService: OffersService,
-    private router: Router
+    private router: Router,
+    private errService: ErrorService
   ) {}
 
   offer = {} as OfferDB;
@@ -22,6 +24,11 @@ export class OfferDetailsComponent implements OnInit {
   isOwner: boolean = false;
 
   ngOnInit(): void {
+    this.errService.setError([
+      {
+        error: { code: 101, error: 'Object not found.' },
+      },
+    ]);
     this.loggedUserID = UtilService.getUserData()?.userId;
 
     this.activeRoute.params.subscribe((params) => {

@@ -9,7 +9,7 @@ import {
 import { Injectable, Provider } from '@angular/core';
 import { EMPTY, Observable, tap } from 'rxjs';
 
-import { catchError } from 'rxjs/operators';
+import { catchError, finalize } from 'rxjs/operators';
 import { UtilService } from './app-services-utils/util.service';
 import {
   environment,
@@ -34,7 +34,7 @@ class AppInterceptor implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    this.errService.setError([]);
+    //this.errService.setError([]);
     if (req.url.startsWith(this.hostAPI)) {
       console.log('INTERCEPTORS WORKS');
 
@@ -74,13 +74,14 @@ class AppInterceptor implements HttpInterceptor {
       }),
 
       catchError((err) => {
-        console.log('errStatus', err.status);
-
+       
         if (err.status === 401) {
           this.router.navigate(['/login']);
         } else {
+          console.log('interceptError', err);
+          
           this.errService.setError(err);
-          //this.router.navigate(['/error']);
+         // this.router.navigate(['/error']);
         }
 
         return [err];
@@ -88,6 +89,7 @@ class AppInterceptor implements HttpInterceptor {
     );
 
     /*  - - -  */
+    
   }
 }
 

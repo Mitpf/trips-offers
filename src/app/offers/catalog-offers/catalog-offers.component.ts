@@ -22,9 +22,7 @@ export class CatalogOffersComponent implements OnInit {
         this.allOffers = data.results;
       }
     });
-
-   
-
-
   }
+
+  
 }

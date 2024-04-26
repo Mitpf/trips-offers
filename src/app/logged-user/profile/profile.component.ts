@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from 'src/app/app-services-utils/api.service';
+
 import { UtilService } from 'src/app/app-services-utils/util.service';
 import { OffersService } from 'src/app/offers/offer-services/offers.service';
 
@@ -11,7 +11,7 @@ import { OffersService } from 'src/app/offers/offer-services/offers.service';
 export class ProfileComponent implements OnInit {
   constructor(
     private offerService: OffersService,
-    private apiService: ApiService
+    
   ) {}
 
   ngOnInit(): void {

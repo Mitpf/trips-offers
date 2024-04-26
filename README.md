@@ -11,7 +11,7 @@
 ### Catalog of offers with logged user
 >preview cards of offers:
 
-![alt text](image-3.png)
+![alt text](readme_assets/image-3.png)
 
 ##
 ##
@@ -19,22 +19,22 @@
 
 ### View details offer-page (in catalog page):
 
-![alt text](image-7.png)
+![alt text](readme_assets/image-7.png)
 
-![alt text](image-8.png)
+![alt text](readme_assets/image-8.png)
 
 ##
 ##
 
 ### Edit Offer page:
 
-![alt text](image-9.png)
+![alt text](readme_assets/image-9.png)
 ##
 ##
 
 ### Add-Offer page (only for logged users)
 
-![alt text](image-4.png)
+![alt text](readme_assets/image-4.png)
 
 ##
 ##
@@ -48,13 +48,13 @@
 ### Profile links for logout and profile info
 profil info still in progress
 
-![alt text](image-5.png)
+![alt text](readme_assets/image-5.png)
 ##
 ##
 
 ### Layout view for Guests:
 
-![alt text](image-11.png)
+![alt text](readme_assets/image-11.png)
 ##
 ##
 
@@ -125,12 +125,12 @@ d9c5fa40-8766-40f1-9548-03efed1069a0
 **Master key**
 fYQkmUkCMaRc0Oh7tlNfRQoSxOtt6gtoN65afXE4
 
-![alt text](image.png)
+![alt text](readme_assets/image.png)
 
 
 ## Back4app sett in cloudCode access only owner can write update delete:
 
-![alt text](image-1.png)
+![alt text](readme_assets/image-1.png)
 
 
 ```javascript
@@ -168,7 +168,7 @@ Parse.Cloud.beforeSave("offers", (request) => {
 > #### For Edit and Add new Offer is used same files with shwitching ON / OFF for editMode
 > Validation is with react-driven approach. It use shared service for big forms validation as add-Offer edit-Offer and register-Form:
 
-![alt text](image-10.png)
+![alt text](readme_assets/image-10.png)
 
 > which helps to define error messages in component, not in template.
 
