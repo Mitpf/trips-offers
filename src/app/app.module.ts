@@ -10,7 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { LoggedUserModule } from './logged-user/logged-user.module';
 import { OffersModule } from './offers/offers.module';
 
-import { appInterceptorProvider } from './app.interceptor';
+import { appInterceptorProvider } from './app-interceptor/app.interceptor';
 import { ErrorMessagesModuleModule } from './error-messages-module/error-messages-module.module';
 import { GlobalLoaderComponent } from './globals/global-loader/global-loader.component';
 import { Page404Component } from './page-404/page-404.component';

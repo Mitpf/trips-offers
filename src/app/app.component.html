@@ -1,18 +1,8 @@
 <app-header />
 <!-- <app-global-loader /> -->
-
-
 <main>
-    
-
-     <ng-container *ngIf="errMessages$ | async as errMessages">
-       <app-error-message ></app-error-message> 
-    </ng-container>
-
-        
-    
-    <router-outlet />
+  <app-error-message />
+  <router-outlet />
 </main>
 
 <app-footer />
-
