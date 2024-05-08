@@ -1,27 +1,27 @@
-# Install operating system and dependencies
-# Build the app in image ‘builder’ (multi-stage builds)
-FROM node:20 as builder
+# Build the app in image 'builder' (multi-stage builds)
+FROM node:lts-alpine as builder
 
 # Define working directory
 WORKDIR /app
 
-# Duplicate the package-lock.json and package.json prior to other files
+# Copy 'package.json' and 'package-lock.json' (if available)
 COPY package*.json ./
 
-# Duplicate all necessary files
-COPY . .
-# Set up project dependencies
+# Install project dependencies
 RUN npm install
 
-# Compile the Angular application
-RUN npm run build -prod
+# Copy all files to working directory
+COPY . .
+
+# Build the Angular application in production mode
+RUN npm run build --prod
 
 # Use nginx server to deliver the application
 FROM nginx:alpine
 
-# Transfer the output of the build step
-COPY -from=builder /app/dist/my-angular-app/ /usr/share/nginx/html
+# Transfer the output of the build step from 'builder' stage
+COPY --from=builder /app/dist/my-angular-app/ /usr/share/nginx/html
 
 # Replace the default nginx configuration with the one provided by tiangolo/node-frontend
-COPY ./nginx.conf /etc/nginx/conf.d/default.conf
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
