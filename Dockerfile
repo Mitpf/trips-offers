@@ -20,7 +20,7 @@ RUN npm run build --prod
 FROM nginx:alpine
 
 # Transfer the output of the build step from 'builder' stage
-COPY --from=builder /app/dist/my-angular-app/ /usr/share/nginx/html
+COPY --from=builder /app/dist/trips-offers/ /usr/share/nginx/html
 
 # Replace the default nginx configuration with the one provided by tiangolo/node-frontend
 COPY nginx.conf /etc/nginx/conf.d/default.conf
