@@ -19,6 +19,7 @@ import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { ErrorService } from '../error-messages-module/error.service';
 import { RequestHandlerService } from './request-handler.service';
+import { GlobalLoaderService } from '../globals/global-loader/global-loader.service';
 
 @Injectable()
 class AppInterceptor implements HttpInterceptor {
@@ -26,7 +27,8 @@ class AppInterceptor implements HttpInterceptor {
     private router: Router,
     private location: Location,
     private errService: ErrorService,
-    private reqService: RequestHandlerService
+    private reqService: RequestHandlerService,
+    private globLoaderService: GlobalLoaderService
   ) {}
 
   hostAPI = '/api';
@@ -36,7 +38,6 @@ class AppInterceptor implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    
     const modifiedReq = this.reqService.handler(
       req,
       this.hostAPI,
@@ -49,6 +50,11 @@ class AppInterceptor implements HttpInterceptor {
     return next.handle(modifiedReq).pipe(
       tap((event: HttpEvent<any>) => {
         if (event instanceof HttpResponse) {
+
+          if (event.ok) {
+            this.globLoaderService.stopIsLoading();
+          }
+
           if (event.body?.sessionToken) {
             console.log('INT', event.body);
             UtilService.setUserData(event.body);
@@ -57,6 +63,7 @@ class AppInterceptor implements HttpInterceptor {
       }),
 
       catchError((err) => {
+        this.globLoaderService.stopIsLoading();
         if (err.status === 401) {
           this.router.navigate(['/login']);
         } else {
@@ -77,5 +84,3 @@ export const appInterceptorProvider: Provider = {
   multi: true,
   provide: HTTP_INTERCEPTORS,
 };
-
-

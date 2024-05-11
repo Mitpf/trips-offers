@@ -2,12 +2,17 @@ import { HttpHandler, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ErrorService } from '../error-messages-module/error.service';
 import { UtilService } from '../app-services-utils/util.service';
+import { GlobalLoaderService } from '../globals/global-loader/global-loader.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class RequestHandlerService {
-  constructor(private next: HttpHandler, private errService: ErrorService) {}
+  constructor(
+    private next: HttpHandler,
+    private errService: ErrorService,
+    private globLoaderService: GlobalLoaderService
+  ) {}
 
   handler(
     req: HttpRequest<any>,
@@ -18,8 +23,10 @@ export class RequestHandlerService {
     //clean old errors
     this.errService.setError([]);
     let modifiedReq = req.clone();
+     
 
     if (req.url.startsWith(hostApi)) {
+      this.globLoaderService.setIsLoading();
       const sessionToken = UtilService.getUserData()?.sessionToken || '';
       const isBodyData = !!req.body;
 
