@@ -1,15 +1,13 @@
 
 
-
-
 export const environment = {
   apiUrl: 'https://parseapi.back4app.com',
 };
 
 const apiCredentials = {
-  appId: 'PbsUtdKVxe7rbYDL5553Ev3QDGDd9DPbP6dnl8tU', // Application ID
-  apiKey: 'OqvCHBHIaTwKUIAFdQjjPTyrPScywEX6uIM5rqE6', // JavaScript key
-  restApiKey: 'xDflhIlMZQ9VVZSyApQE9cDh4XMB2PJ84CH57Qzy', //REST API key
+  appId: 'qbYxjUKwddTTXNPHyM2hXxkbe0lV4bfmqaOydU48', // Application ID
+  apiKey: 'bXsV89Fn06mg2CDuk5Qpqq5othRpE71hzP628NiZ', // JavaScript key
+  restApiKey: 'mhSQ5pdsbv7VJ5FlFgLOu7OK2R94seeajtOFBiRh', //REST API key
 };
 
 export const apiHeaders = {
